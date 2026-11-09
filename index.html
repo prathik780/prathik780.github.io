@@ -1,10 +1,1720 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" class="scroll-smooth dark">
 <head>
-    <title>My GitHub Website</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prathik Reddy Gunreddy | Ph.D. Candidate — Georgia Tech | Vibro-Acoustics & EV Systems</title>
+  <meta name="description" content="Executive engineering & academic R&D portfolio of Prathik Reddy Gunreddy, Ph.D. Candidate in Mechanical Engineering at Georgia Tech (B.Tech, IIT Bombay). Specializing in Vibro-Acoustic Metamaterials, Structural Dynamics, and EV Systems Architecture." />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            gtgold: {
+              50: '#fbf8eb',
+              100: '#f5eccb',
+              200: '#edd899',
+              300: '#e2be5f',
+              400: '#d8a738',
+              500: '#c59227',
+              600: '#a4721d',
+              700: '#83541a',
+              800: '#6e441c',
+              900: '#5e391c',
+            },
+            navy: {
+              850: '#0d1526',
+              900: '#090f1d',
+              950: '#050912',
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Custom Subtle Grid & Acoustic Wave Aesthetics */
+    .bg-tech-grid {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+    }
+    .dark .bg-tech-grid {
+      background-image: 
+        linear-gradient(to right, rgba(216, 167, 56, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090f1d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d8a738;
+    }
+    .card-lift {
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+    }
+    .card-lift:hover {
+      transform: translateY(-4px);
+    }
+  </style>
 </head>
-<body>
-    <h1>Hello World!</h1>
-    <p>Welcome to my brand new GitHub Pages website.</p>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 font-sans antialiased selection:bg-gtgold-400 selection:text-navy-950 transition-colors duration-300">
+
+  <!-- =====================================================================
+       1. STICKY TOP NAVIGATION BAR
+  ====================================================================== -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-navy-950/85 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <!-- Brand / Identity -->
+      <a href="#top" class="flex items-center gap-3.5 group focus:outline-none">
+        <div class="w-10 h-10 rounded-lg bg-slate-900 dark:bg-gtgold-400/15 border border-slate-700 dark:border-gtgold-400/40 flex items-center justify-center text-gtgold-400 font-mono font-bold text-sm tracking-tighter shadow-sm group-hover:border-gtgold-400 transition-colors">
+          PRG
+        </div>
+        <div>
+          <span class="block font-display font-bold text-base sm:text-lg tracking-tight text-slate-900 dark:text-white group-hover:text-gtgold-600 dark:group-hover:text-gtgold-400 transition-colors" id="nav-name">
+            Prathik Reddy Gunreddy
+          </span>
+          <span class="block font-mono text-[11px] text-slate-500 dark:text-slate-400 tracking-wide" id="nav-subtitle">
+            Ph.D. Candidate | Georgia Tech
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium text-slate-600 dark:text-slate-300">
+        <a href="#about" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
+        <a href="#projects" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Featured Work</a>
+        <a href="#publications" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Publications & IP</a>
+        <a href="#skills" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Skills</a>
+        <a href="#experience" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Experience & Education</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Actions: Theme Toggle & CV Button -->
+      <div class="flex items-center gap-2.5">
+        <button id="theme-toggle" type="button" aria-label="Toggle Dark or Light Mode" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-gtgold-600 dark:hover:text-gtgold-400 transition-colors" title="Switch Theme">
+          <i class="fa-solid fa-sun hidden dark:inline-block text-gtgold-400"></i>
+          <i class="fa-solid fa-moon inline-block dark:hidden text-slate-700"></i>
+        </button>
+
+        <button onclick="openCvModal()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-lg font-medium text-xs sm:text-sm bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 hover:bg-slate-800 dark:hover:bg-gtgold-300 transition-all shadow-sm font-display">
+          <i class="fa-solid fa-file-arrow-down text-xs"></i>
+          <span>Download CV</span>
+        </button>
+
+        <!-- Mobile Hamburger Button -->
+        <button id="mobile-menu-btn" type="button" aria-label="Open Menu" class="lg:hidden p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+          <i class="fa-solid fa-bars text-base"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-navy-900 px-4 pt-3 pb-5 space-y-2">
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Featured Work</a>
+      <a href="#publications" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Publications & IP</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Skills</a>
+      <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Experience & Education</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
+      <div class="pt-2 border-t border-slate-200 dark:border-slate-800">
+        <button onclick="openCvModal()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-semibold text-sm bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>Download Curriculum Vitae (PDF)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       2. HERO SECTION
+  ====================================================================== -->
+  <main id="top" class="relative overflow-hidden bg-tech-grid">
+    <!-- Subtle radial ambient glow -->
+    <div class="pointer-events-none absolute -top-40 right-1/4 w-[500px] h-[500px] rounded-full bg-gtgold-400/10 dark:bg-gtgold-400/5 blur-3xl"></div>
+    <div class="pointer-events-none absolute top-40 -left-20 w-[400px] h-[400px] rounded-full bg-blue-500/5 dark:bg-blue-500/5 blur-3xl"></div>
+
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16 lg:pt-20 lg:pb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+        
+        <!-- Left Column: Executive Bio & Actions (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <!-- Status Badge -->
+          <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-gtgold-50 dark:bg-gtgold-400/10 border border-gtgold-300/70 dark:border-gtgold-400/30 text-gtgold-800 dark:text-gtgold-300 text-xs font-mono font-medium">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span id="hero-status">Available for Industry R&D Roles • May 2027</span>
+          </div>
+
+          <!-- Name & Headline -->
+          <div class="space-y-3">
+            <h1 id="hero-name" class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+              Prathik Reddy Gunreddy
+            </h1>
+            <p id="hero-subtitle" class="font-display text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-200 leading-snug">
+              Ph.D. Candidate in Mechanical Engineering at <span class="text-gtgold-600 dark:text-gtgold-400">Georgia Tech</span> | Vibro-Acoustic Metamaterials, Structural Dynamics & EV Systems Architecture
+            </p>
+          </div>
+
+          <!-- Bio Summary -->
+          <p id="hero-bio" class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+            Bridging fundamental wave physics, high-fidelity finite element modeling, and complex vehicle systems integration. Experienced in designing hybrid vibro-acoustic metamaterials for simultaneous sound and vibration attenuation and leading multi-disciplinary automotive engineering teams from concept to 1st-place national competition execution.
+          </p>
+
+          <!-- Key Affiliations Strip -->
+          <div class="flex flex-wrap items-center gap-y-2 gap-x-6 pt-1 text-xs font-mono text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-building-columns text-gtgold-500"></i>
+              <span>Georgia Institute of Technology (Ph.D. '27)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-graduation-cap text-gtgold-500"></i>
+              <span>IIT Bombay (B.Tech ME)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-location-dot text-gtgold-500"></i>
+              <span>Atlanta, GA</span>
+            </div>
+          </div>
+
+          <!-- Primary CTA & Academic/Social Bar -->
+          <div class="pt-2 flex flex-wrap items-center gap-3.5">
+            <a href="#projects" class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl font-display font-semibold text-sm bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 hover:bg-slate-800 dark:hover:bg-gtgold-300 shadow-sm transition-all">
+              <span>View Featured Projects</span>
+              <i class="fa-solid fa-arrow-right text-xs"></i>
+            </a>
+            <a href="#publications" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-display font-semibold text-sm bg-white dark:bg-navy-900 text-slate-800 dark:text-slate-100 border border-slate-300 dark:border-slate-700 hover:border-gtgold-500 dark:hover:border-gtgold-400 transition-all">
+              <i class="fa-solid fa-scroll text-gtgold-500 text-xs"></i>
+              <span>Publications & Patents</span>
+            </a>
+
+            <!-- Social Icon Buttons -->
+            <div class="flex items-center gap-2 pl-1" id="hero-social-links">
+              <!-- Populated dynamically via PORTFOLIO_DATA -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Geometric Profile Frame + Interactive Photo Previewer (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col items-center lg:items-end">
+          <div class="relative w-full max-w-sm">
+            <!-- Decorative corner accents -->
+            <div class="absolute -top-3 -left-3 w-16 h-16 border-t-2 border-l-2 border-gtgold-400 rounded-tl-xl pointer-events-none"></div>
+            <div class="absolute -bottom-3 -right-3 w-16 h-16 border-b-2 border-r-2 border-gtgold-400 rounded-br-xl pointer-events-none"></div>
+
+            <!-- Main Profile Card Container -->
+            <div class="relative rounded-2xl overflow-hidden bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+              
+              <!-- Top Technical Status Header inside Frame -->
+              <div class="px-4 py-2.5 bg-slate-100 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 rounded-full bg-gtgold-400"></span>
+                  RESEARCHER_PROFILE // GT-ME
+                </span>
+                <span>ID: 2027-R&D</span>
+              </div>
+
+              <!-- Image or Technical Graphic Display Area -->
+              <div class="relative aspect-[4/4.3] w-full bg-gradient-to-br from-slate-900 via-navy-900 to-slate-950 flex flex-col items-center justify-center overflow-hidden group">
+                
+                <!-- Custom Uploaded Photo View (Hidden until user uploads or sets image URL) -->
+                <img id="profile-photo-img" src="" alt="Prathik Reddy Gunreddy Portrait" class="hidden w-full h-full object-cover object-center" />
+
+                <!-- Default Executive Portrait Placeholder with Acoustic Metamaterial SVG Backdrop -->
+                <div id="profile-placeholder-graphic" class="w-full h-full flex flex-col items-center justify-between p-6 text-center relative">
+                  <!-- Animated/Geometric Split-Ring Resonator & Wave Mesh SVG -->
+                  <svg class="w-44 h-44 mt-2 text-gtgold-400/90" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer Backing Plate Grid -->
+                    <rect x="20" y="20" width="160" height="160" rx="12" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <!-- Outer Split Ring Resonator -->
+                    <path d="M 100 35 A 65 65 0 1 1 65 45" stroke="currentColor" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+                    <!-- Inner Split Ring Resonator (Opposite split) -->
+                    <path d="M 100 148 A 48 48 0 1 1 130 137" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" opacity="0.85"/>
+                    <!-- Central Slender Pillar Node -->
+                    <circle cx="100" cy="100" r="18" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="2.5"/>
+                    <circle cx="100" cy="100" r="5" fill="#d8a738"/>
+                    <!-- Elastic Wave Vectors -->
+                    <path d="M 10 100 Q 25 85, 40 100 T 70 100" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+                    <path d="M 130 100 Q 145 95, 160 100 T 190 100" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="2 2" fill="none"/>
+                  </svg>
+
+                  <!-- Monogram & Role Overlay -->
+                  <div class="space-y-1 z-10">
+                    <div class="inline-block px-2.5 py-0.5 rounded bg-gtgold-400/15 border border-gtgold-400/30 font-mono text-[10px] text-gtgold-300 uppercase tracking-widest">
+                      Portrait Preview Slot
+                    </div>
+                    <h2 class="font-display font-bold text-white text-lg">Prathik Reddy Gunreddy</h2>
+                    <p class="font-mono text-xs text-slate-400">Vibro-Acoustics • Metamaterials • EV Systems</p>
+                  </div>
+
+                  <!-- Advisors & Lab Footnote -->
+                  <div class="w-full pt-3 border-t border-slate-800/90 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                    <span>Advisors: Dr. K. Sabra & Dr. M. Leamy</span>
+                    <span class="text-gtgold-400">Georgia Tech</span>
+                  </div>
+                </div>
+
+                <!-- Interactive Hover / Bottom Controls for Testing Headshot -->
+                <div class="absolute bottom-3 inset-x-3 flex items-center justify-between gap-2 bg-navy-950/90 backdrop-blur-md border border-slate-700/80 rounded-xl p-2 shadow-lg">
+                  <label for="headshot-upload" class="flex-1 cursor-pointer inline-flex items-center justify-center gap-2 px-3 py-1.5 rounded-lg bg-gtgold-400 hover:bg-gtgold-300 text-navy-950 font-display font-semibold text-xs transition-colors">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Upload / Preview Your Photo</span>
+                  </label>
+                  <input id="headshot-upload" type="file" accept="image/*" class="hidden" onchange="handleProfilePhotoUpload(event)" />
+                  <button id="reset-photo-btn" onclick="resetProfilePhoto()" class="hidden px-2.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 hover:text-white text-xs font-mono" title="Reset to Technical Graphic">
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- =====================================================================
+           3. IMPACT HIGHLIGHTS BANNER (4 METRIC CARDS)
+      ====================================================================== -->
+      <div class="mt-14 lg:mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5" id="impact-metrics-grid">
+        <!-- Populated dynamically from PORTFOLIO_DATA.metrics -->
+      </div>
+    </section>
+  </main>
+
+  <!-- =====================================================================
+       4. FEATURED ENGINEERING & RESEARCH PROJECTS
+  ====================================================================== -->
+  <section id="projects" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-navy-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header + "+ Add / Edit Project Preview" Button -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
+            <span class="w-6 h-[1px] bg-gtgold-500"></span>
+            <span>R&D Case Studies & Systems Engineering</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Featured Engineering & Research Projects
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+            Select any project card below to inspect the full technical case study, mathematical methodology, experimental validation setup, and key engineering outcomes.
+          </p>
+        </div>
+
+        <!-- Interactive Builder Button for User Customization -->
+        <div class="flex items-center gap-2.5 shrink-0">
+          <button onclick="openProjectEditorModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs font-medium bg-slate-100 dark:bg-slate-800/90 text-slate-800 dark:text-gtgold-300 border border-slate-300 dark:border-gtgold-400/30 hover:border-gtgold-500 dark:hover:border-gtgold-400 transition-all shadow-sm">
+            <i class="fa-solid fa-plus text-gtgold-500"></i>
+            <span>+ Add / Edit Project Preview</span>
+          </button>
+          <button onclick="exportPortfolioConfig()" class="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl font-mono text-xs font-medium bg-white dark:bg-navy-950 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-slate-400 transition-all" title="Export Updated PORTFOLIO_DATA JSON">
+            <i class="fa-solid fa-code"></i>
+            <span class="hidden sm:inline">Export Data</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2 mb-8 pb-2 border-b border-slate-200 dark:border-slate-800" id="project-filter-tabs">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+        <!-- Populated dynamically via PORTFOLIO_DATA.projects -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       5. PUBLICATIONS & INTELLECTUAL PROPERTY SECTION
+  ====================================================================== -->
+  <section id="publications" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
+            <span class="w-6 h-[1px] bg-gtgold-500"></span>
+            <span>Patents, Peer-Reviewed Journals & Preprints</span>
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+            Publications & Intellectual Property
+          </h2>
+          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+            Research output spanning hybrid airborne/structure-borne vibro-acoustic metamaterials, non-homogeneous scattering matrix characterization, and elastic wave attenuation.
+          </p>
+        </div>
+
+        <!-- Filter Pills for IP / Publications -->
+        <div class="flex flex-wrap gap-2" id="pub-filter-buttons">
+          <button onclick="filterPublications('All')" data-pub-filter="All" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 transition-colors">All Output</button>
+          <button onclick="filterPublications('Patent')" data-pub-filter="Patent" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-navy-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">Patents</button>
+          <button onclick="filterPublications('Journal')" data-pub-filter="Journal" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-navy-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">Journal Articles</button>
+          <button onclick="filterPublications('Manuscript')" data-pub-filter="Manuscript" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-navy-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">Manuscripts</button>
+        </div>
+      </div>
+
+      <!-- Publications List -->
+      <div class="space-y-4" id="publications-list">
+        <!-- Populated dynamically via PORTFOLIO_DATA.publications -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       6. TECHNICAL ARSENAL / SKILLS MATRIX
+  ====================================================================== -->
+  <section id="skills" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-navy-900/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
+          <span class="w-6 h-[1px] bg-gtgold-500"></span>
+          <span>Core Competencies & Toolchains</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+          Technical Arsenal & Domain Expertise
+        </h2>
+        <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+          Full-stack engineering capabilities across multiphysics finite element simulation, experimental acoustic impedance testing, vehicle architecture packaging, and physics-informed machine learning.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="skills-grid">
+        <!-- Populated dynamically via PORTFOLIO_DATA.skills -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       7. EXPERIENCE & EDUCATION TIMELINE
+  ====================================================================== -->
+  <section id="experience" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-navy-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
+          <span class="w-6 h-[1px] bg-gtgold-500"></span>
+          <span>Academic & Leadership Trajectory</span>
+        </div>
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+          Experience & Education
+        </h2>
+      </div>
+
+      <div class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-800 space-y-10" id="timeline-list">
+        <!-- Populated dynamically via PORTFOLIO_DATA.timeline -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       8. CONTACT & GITHUB PAGES DEPLOYMENT QUICK-GUIDE FOOTER
+  ====================================================================== -->
+  <footer id="contact" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-navy-900 pt-16 pb-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <!-- Executive Contact Card -->
+      <div class="rounded-2xl bg-gradient-to-br from-slate-900 via-navy-900 to-navy-950 text-white p-8 sm:p-10 lg:p-12 border border-slate-800 shadow-xl relative overflow-hidden">
+        <div class="pointer-events-none absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-gtgold-400/10 blur-3xl"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gtgold-400/15 border border-gtgold-400/30 text-gtgold-300 font-mono text-xs">
+              <i class="fa-solid fa-handshake"></i>
+              <span>Open to Industry R&D, National Labs & Postdoctoral Discussions</span>
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
+              Let’s Discuss R&D Opportunities & Collaboration
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
+              Graduating in <strong class="text-white font-semibold">May 2027</strong> with a Ph.D. in Mechanical Engineering from Georgia Tech. Feel free to reach out regarding senior R&D engineering roles in acoustics, NVH, metamaterials, structural dynamics, or EV systems architecture.
+            </p>
+            <div class="flex flex-wrap items-center gap-4 pt-2 text-xs font-mono text-slate-400">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-gtgold-400"></i> Atlanta, Georgia, USA</span>
+              <span class="flex items-center gap-2"><i class="fa-solid fa-envelope text-gtgold-400"></i> <span id="contact-email-display">prathik.gunreddy@gatech.edu</span></span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3 justify-end">
+            <button onclick="copyEmailAddress()" class="w-full inline-flex items-center justify-center gap-3 px-5 py-3.5 rounded-xl font-display font-semibold text-sm bg-gtgold-400 hover:bg-gtgold-300 text-navy-950 transition-all shadow-md">
+              <i class="fa-regular fa-copy"></i>
+              <span>Copy Email Address</span>
+            </button>
+            <div class="grid grid-cols-3 gap-2.5" id="footer-social-buttons">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collapsible "How to Customize & Host on GitHub.io" Developer Guide -->
+      <div class="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-navy-950 overflow-hidden">
+        <button onclick="toggleDeployGuide()" type="button" class="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-slate-100 dark:hover:bg-slate-900/60 transition-colors">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-lg bg-gtgold-400/15 border border-gtgold-400/30 flex items-center justify-center text-gtgold-600 dark:text-gtgold-400 font-mono text-xs">
+              <i class="fa-brands fa-github text-sm"></i>
+            </span>
+            <div>
+              <h3 class="font-display font-semibold text-sm sm:text-base text-slate-900 dark:text-white">
+                How to Customize & Host for Free on GitHub Pages (<code class="font-mono text-xs text-gtgold-600 dark:text-gtgold-400">username.github.io</code>)
+              </h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">
+                Click to expand step-by-step instructions for editing <code class="font-mono">PORTFOLIO_DATA</code> and publishing your site.
+              </p>
+            </div>
+          </div>
+          <i id="deploy-guide-chevron" class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-200"></i>
+        </button>
+
+        <div id="deploy-guide-content" class="hidden border-t border-slate-200 dark:border-slate-800 px-6 py-6 text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div class="font-mono text-xs font-bold text-gtgold-600 dark:text-gtgold-400">STEP 1 // EDIT PORTFOLIO_DATA</div>
+              <p class="text-xs leading-relaxed">
+                Open <code class="font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">index.html</code> in any code editor (VS Code, Notepad, etc.) and scroll to the <code class="font-mono text-gtgold-500">const PORTFOLIO_DATA = { ... }</code> block inside the script. Or use the interactive <strong>"+ Add / Edit Project Preview"</strong> button above and click <strong>"Export Data"</strong>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div class="font-mono text-xs font-bold text-gtgold-600 dark:text-gtgold-400">STEP 2 // ADD ASSETS & CV PDF</div>
+              <p class="text-xs leading-relaxed">
+                Place your headshot (e.g., <code class="font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">profile.jpg</code>), project plots, and <code class="font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">Prathik_Gunreddy_CV.pdf</code> in the same repository folder, then set <code class="font-mono">profileImage: "profile.jpg"</code> and <code class="font-mono">cvUrl: "Prathik_Gunreddy_CV.pdf"</code>.
+              </p>
+            </div>
+            <div class="p-4 rounded-xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 space-y-2">
+              <div class="font-mono text-xs font-bold text-gtgold-600 dark:text-gtgold-400">STEP 3 // PUSH TO GITHUB.IO</div>
+              <p class="text-xs leading-relaxed">
+                Create a public GitHub repository named <code class="font-mono bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded">&lt;your-username&gt;.github.io</code>, upload <code class="font-mono">index.html</code>, and enable GitHub Pages under <em>Settings → Pages</em>. Your site goes live globally over HTTPS in ~60 seconds.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Copyright & Meta -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500 dark:text-slate-400 font-mono">
+        <div>
+          © <span id="current-year">2026</span> Prathik Reddy Gunreddy. All rights reserved.
+        </div>
+        <div class="flex items-center gap-4">
+          <span>Georgia Institute of Technology • IIT Bombay</span>
+          <a href="#top" class="text-gtgold-600 dark:text-gtgold-400 hover:underline">Back to top ↑</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       MODAL 1: DETAILED PROJECT CASE STUDY MODAL
+  ====================================================================== -->
+  <div id="case-study-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+    <div class="relative w-full max-w-4xl rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+      
+      <!-- Modal Sticky Header -->
+      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4 shrink-0">
+        <div class="flex items-center gap-2.5">
+          <span id="modal-project-category" class="px-2.5 py-1 rounded-md font-mono text-xs font-medium bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30">
+            Category
+          </span>
+          <span id="modal-project-badge" class="px-2.5 py-1 rounded-md font-mono text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            Badge
+          </span>
+        </div>
+        <button onclick="closeCaseStudyModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" aria-label="Close Modal">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <!-- Modal Scrollable Content -->
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+        <div>
+          <h3 id="modal-project-title" class="font-display text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+            Project Title
+          </h3>
+          <p id="modal-project-subtitle" class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+            Subtitle
+          </p>
+        </div>
+
+        <!-- Visual Diagram / Custom Plot / CAD Render Slot -->
+        <div class="rounded-xl bg-slate-900 border border-slate-800 overflow-hidden">
+          <div class="px-4 py-2 bg-navy-950 border-b border-slate-800 flex items-center justify-between text-xs font-mono text-slate-400">
+            <span id="modal-diagram-caption">FIG 1.0 // TECHNICAL ARCHITECTURE & EXPERIMENTAL SCHEMATIC</span>
+            <label class="cursor-pointer text-gtgold-400 hover:underline flex items-center gap-1.5">
+              <i class="fa-solid fa-image"></i>
+              <span>Test Custom Plot/CAD Image</span>
+              <input type="file" accept="image/*" class="hidden" onchange="handleModalImagePreview(event)" />
+            </label>
+          </div>
+          <div id="modal-visual-container" class="p-6 flex items-center justify-center min-h-[220px]">
+            <!-- Populated with custom SVG diagram or uploaded image -->
+          </div>
+        </div>
+
+        <!-- Case Study 3-Pillar Grid: Problem, Technical Approach, Key Results -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-5 rounded-xl bg-slate-50 dark:bg-navy-950/70 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="font-mono text-xs font-bold uppercase tracking-wider text-gtgold-600 dark:text-gtgold-400 flex items-center gap-2">
+              <i class="fa-solid fa-bullseye"></i>
+              <span>Problem Statement & Objective</span>
+            </div>
+            <p id="modal-project-problem" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed"></p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-50 dark:bg-navy-950/70 border border-slate-200 dark:border-slate-800 space-y-2">
+            <div class="font-mono text-xs font-bold uppercase tracking-wider text-gtgold-600 dark:text-gtgold-400 flex items-center gap-2">
+              <i class="fa-solid fa-gears"></i>
+              <span>Methodology & Technical Execution</span>
+            </div>
+            <p id="modal-project-approach" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed"></p>
+          </div>
+        </div>
+
+        <!-- Key Quantitative & Engineering Outcomes -->
+        <div class="p-5 rounded-xl bg-gtgold-50/60 dark:bg-gtgold-400/5 border border-gtgold-300/60 dark:border-gtgold-400/20 space-y-3">
+          <div class="font-mono text-xs font-bold uppercase tracking-wider text-gtgold-700 dark:text-gtgold-300 flex items-center gap-2">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Key Results & Validated Performance</span>
+          </div>
+          <ul id="modal-project-results" class="space-y-2 text-sm text-slate-700 dark:text-slate-200">
+            <!-- Populated dynamically -->
+          </ul>
+        </div>
+
+        <!-- Tools & Tech Stack Tags -->
+        <div class="space-y-2">
+          <div class="font-mono text-xs text-slate-500 dark:text-slate-400 uppercase">Tools, Hardware & Software Stack</div>
+          <div id="modal-project-tags" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
+        <span class="font-mono text-xs text-slate-500">Tip: Update project details anytime in <code class="text-gtgold-500">PORTFOLIO_DATA.projects</code></span>
+        <button onclick="closeCaseStudyModal()" class="px-4 py-2 rounded-lg font-display font-semibold text-xs bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950">
+          Close Case Study
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: INTERACTIVE "+ ADD / EDIT PROJECT PREVIEW" BUILDER
+  ====================================================================== -->
+  <div id="project-editor-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden my-8">
+      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <i class="fa-solid fa-layer-group text-gtgold-500"></i>
+          <h3 class="font-display font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+            Add or Test a Project Card Live
+          </h3>
+        </div>
+        <button onclick="closeProjectEditorModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form id="add-project-form" onsubmit="handleSaveProject(event)" class="p-6 space-y-4 max-h-[80vh] overflow-y-auto text-sm">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Project Title *</label>
+            <input id="form-proj-title" type="text" required placeholder="e.g.,Nonlinear Acoustic Metamaterial Damping" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400" />
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Category *</label>
+            <select id="form-proj-category" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400">
+              <option value="Vibro-Acoustics & Metamaterials">Vibro-Acoustics & Metamaterials</option>
+              <option value="EV Systems & Controls">EV Systems & Controls</option>
+              <option value="Analytical & ML Modeling">Analytical & ML Modeling</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Status / Highlight Badge</label>
+            <input id="form-proj-badge" type="text" placeholder="e.g., Experimental R&D • Georgia Tech" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400" />
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Technical Tags (comma-separated)</label>
+            <input id="form-proj-tags" type="text" placeholder="COMSOL, MATLAB, Vibro-Acoustics, FEA" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Executive Summary (Card Description) *</label>
+          <textarea id="form-proj-summary" rows="2" required placeholder="Concise 1-2 sentence overview for the portfolio card..." class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Problem Statement</label>
+            <textarea id="form-proj-problem" rows="3" placeholder="What fundamental engineering or physics challenge did this solve?" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400"></textarea>
+          </div>
+          <div>
+            <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Technical Approach</label>
+            <textarea id="form-proj-approach" rows="3" placeholder="How did you model, manufacture, or validate the solution?" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400"></textarea>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-mono text-xs text-slate-600 dark:text-slate-300 mb-1">Key Results (One bullet per line)</label>
+          <textarea id="form-proj-results" rows="3" placeholder="Achieved 18 dB sound transmission loss improvement&#10;Validated FEA dispersion predictions within 3% of experiment" class="w-full px-3.5 py-2 rounded-lg bg-slate-50 dark:bg-navy-950 border border-slate-300 dark:border-slate-700 text-slate-900 dark:text-white focus:outline-none focus:border-gtgold-400"></textarea>
+        </div>
+
+        <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeProjectEditorModal()" class="px-4 py-2 rounded-lg text-xs font-mono text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800">Cancel</button>
+          <button type="submit" class="px-5 py-2.5 rounded-lg font-display font-semibold text-xs bg-gtgold-400 hover:bg-gtgold-300 text-navy-950 shadow-sm">
+            Add Project to Portfolio Grid
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 3: BIBTEX CITATION & EXPORT MODAL
+  ====================================================================== -->
+  <div id="bibtex-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="relative w-full max-w-xl rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <span id="bibtex-modal-title" class="font-mono text-xs font-bold text-gtgold-600 dark:text-gtgold-400 uppercase tracking-wider">BibTeX Citation</span>
+        <button onclick="closeBibtexModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4">
+        <pre id="bibtex-code-block" class="p-4 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto leading-relaxed border border-slate-800"></pre>
+        <div class="flex justify-end gap-2.5">
+          <button onclick="copyBibtexCode()" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-display font-semibold text-xs bg-gtgold-400 hover:bg-gtgold-300 text-navy-950">
+            <i class="fa-regular fa-copy"></i>
+            <span>Copy to Clipboard</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 4: EXECUTIVE CV SUMMARY & PDF DOWNLOAD MODAL
+  ====================================================================== -->
+  <div id="cv-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-file-pdf text-gtgold-500"></i>
+          <span class="font-display font-bold text-base text-slate-900 dark:text-white">Curriculum Vitae — Prathik Reddy Gunreddy</span>
+        </div>
+        <button onclick="closeCvModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4 text-sm text-slate-600 dark:text-slate-300">
+        <div class="p-4 rounded-xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-2 font-mono text-xs">
+          <div class="text-slate-900 dark:text-white font-bold">PRATHIK REDDY GUNREDDY</div>
+          <div>Ph.D. Candidate in Mechanical Engineering • Georgia Institute of Technology (Expected May 2027)</div>
+          <div>B.Tech in Mechanical Engineering • Indian Institute of Technology (IIT) Bombay</div>
+          <div class="text-gtgold-600 dark:text-gtgold-400">Research Areas: Vibro-Acoustic Metamaterials, Structural Dynamics, Wave Physics & EV Architecture</div>
+        </div>
+        <p class="text-xs leading-relaxed">
+          When deploying to GitHub Pages, place your compiled PDF file (e.g., <code class="font-mono text-gtgold-500">Prathik_Gunreddy_CV.pdf</code>) in your repository root and update <code class="font-mono">PORTFOLIO_DATA.profile.cvUrl</code>. You can also print or save a clean executive summary directly from this page.
+        </p>
+        <div class="flex flex-wrap items-center justify-end gap-3 pt-2">
+          <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-mono text-xs border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:border-gtgold-400">
+            <i class="fa-solid fa-print"></i>
+            <span>Print / Save Page as PDF</span>
+          </button>
+          <a id="cv-direct-link" href="#contact" onclick="closeCvModal()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-xs bg-gtgold-400 hover:bg-gtgold-300 text-navy-950">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Request Latest CV via Email</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Banner -->
+  <div id="toast-banner" class="fixed bottom-5 right-5 z-50 hidden items-center gap-3 px-4 py-3 rounded-xl bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 font-mono text-xs font-medium shadow-xl border border-slate-700 dark:border-gtgold-300 transition-all">
+    <i class="fa-solid fa-circle-check"></i>
+    <span id="toast-message">Action completed</span>
+  </div>
+
+  <!-- =====================================================================
+       CENTRALIZED PORTFOLIO CONFIGURATION & APPLICATION LOGIC
+  ====================================================================== -->
+  <script>
+    /**
+     * ============================================================================
+     * PORTFOLIO_DATA: CENTRALIZED CONFIGURATION OBJECT FOR GITHUB PAGES
+     * ============================================================================
+     * Edit the fields below to update your bio, links, projects, publications,
+     * skills, and timeline. All changes automatically render across the website.
+     */
+    const PORTFOLIO_DATA = {
+      profile: {
+        name: "Prathik Reddy Gunreddy",
+        navSubtitle: "Ph.D. Candidate | Georgia Tech",
+        statusBadge: "Available for Industry R&D Roles • May 2027",
+        headlineSubtitle: "Ph.D. Candidate in Mechanical Engineering at Georgia Tech | Vibro-Acoustic Metamaterials, Structural Dynamics & EV Systems Architecture",
+        bio: "Bridging fundamental wave physics, high-fidelity finite element modeling, and complex vehicle systems integration. Experienced in designing hybrid vibro-acoustic metamaterials for simultaneous sound and vibration attenuation and leading multi-disciplinary automotive engineering teams from concept to 1st-place national competition execution.",
+        location: "Atlanta, GA",
+        email: "prathik.gunreddy@gatech.edu",
+        cvUrl: "Prathik_Gunreddy_CV.pdf", // Place your PDF in the same folder when hosting on github.io
+        profileImage: "", // Optional: set to e.g. "assets/headshot.jpg"
+        socials: [
+          { label: "Google Scholar", icon: "fa-brands fa-google-scholar", url: "https://scholar.google.com" },
+          { label: "LinkedIn", icon: "fa-brands fa-linkedin-in", url: "https://www.linkedin.com" },
+          { label: "GitHub", icon: "fa-brands fa-github", url: "https://github.com" },
+          { label: "Email", icon: "fa-solid fa-envelope", url: "mailto:prathik.gunreddy@gatech.edu" }
+        ]
+      },
+
+      // 3. Impact Highlights Banner (4 Metric Cards)
+      metrics: [
+        {
+          metric: "1st Place Overall",
+          title: "EcoCAR EV Challenge",
+          detail: "1st in Technical Presentation • 4 Years as System Design & Integration (SDI) Lead",
+          icon: "fa-solid fa-trophy"
+        },
+        {
+          metric: "U.S. Patent Filed",
+          title: "Hybrid Metamaterials",
+          detail: "Planar Vibro-Acoustic Metamaterial for Simultaneous Sound & Vibration Attenuation",
+          icon: "fa-solid fa-certificate"
+        },
+        {
+          metric: "Peer-Reviewed Research",
+          title: "ASME J. Vib. Acoust.",
+          detail: "Published research on elastic metamaterials & wave propagation control",
+          icon: "fa-solid fa-book-journal-whills"
+        },
+        {
+          metric: "IIT Bombay & Georgia Tech",
+          title: "Academic Pedigree",
+          detail: "Dual foundation in analytical mechanics, experimental acoustics, and EV systems",
+          icon: "fa-solid fa-university"
+        }
+      ],
+
+      // 4. Featured Engineering & Research Projects
+      projects: [
+        {
+          id: "proj-hybrid-metamaterial",
+          title: "Planar Hybrid Vibro-Acoustic Metamaterials (Patent Pending)",
+          category: "Vibro-Acoustics & Metamaterials",
+          badge: "U.S. Patent Filed • Georgia Tech",
+          summary: "Split-ring resonators (SRRs) attached to a backing plate via slender pillars to achieve simultaneous attenuation of airborne sound (STL) and structure-borne P, SH, and SV elastic waves.",
+          problem: "Conventional acoustic treatments and structural dampers address either airborne sound transmission or structure-borne mechanical vibration in isolation, often requiring bulky, heavy multi-layer packages unsuitable for weight-critical aerospace and EV applications.",
+          approach: "Engineered a compact, planar hybrid metamaterial architecture featuring concentric split-ring resonators (SRRs) coupled to a host backing plate via carefully tuned slender pillars. Performed coupled acoustic-structure interaction (ASI) and Bloch-Floquet bandgap dispersion modeling in COMSOL Multiphysics, fabricated prototypes on a Bambu Lab X1E 3D printer, and validated multi-modal wave attenuation experimentally.",
+          results: [
+            "Achieved simultaneous airborne Sound Transmission Loss (STL) peaks and multi-polarization structure-borne elastic wave (P, SH, and SV) stopbands within a single planar footprint.",
+            "Filed a U.S. Patent Application covering the coupled resonator-pillar-plate kinematics and tunable multi-bandgap geometry.",
+            "Demonstrated strong agreement between finite element dispersion predictions, transmission spectra, and 3D-printed PLA experimental specimens."
+          ],
+          tags: ["COMSOL Multiphysics", "Vibro-Acoustics", "3D Printing / Bambu Lab X1E", "Experimental Testing", "Bloch-Floquet Bandgaps"],
+          diagramType: "srr-metamaterial"
+        },
+        {
+          id: "proj-ecocar-lyriq",
+          title: "EcoCAR EV Challenge — 2023 Cadillac LYRIQ AWD Conversion",
+          category: "EV Systems & Controls",
+          badge: "1st Place Overall • 4-Year SDI Lead",
+          summary: "Served 4 years as System Design & Integration (SDI) Lead. Directed the engineering conversion of a RWD Cadillac LYRIQ into a high-performance AWD platform with custom thermal cooling architectures, subframe structural modifications, and Level 2 autonomous driving features.",
+          problem: "Transforming a production rear-wheel-drive 2023 Cadillac LYRIQ into an integrated, competition-grade all-wheel-drive (AWD) connected electric vehicle required packaging a new front electric drive unit, high-voltage power electronics, custom thermal loops, and ADAS compute hardware within tight OEM structural envelopes.",
+          approach: "Led the cross-functional System Design & Integration (SDI) subteam across a 4-year vehicle development cycle (V-model). Directed CAD packaging and structural subframe mounting modifications in Siemens NX & SolidWorks, performed FEA structural crash/load verification, architected dual-loop thermal management systems, and led national technical design presentations.",
+          results: [
+            "Awarded 1st Place Overall Nationally in the EcoCAR EV Challenge and 1st Place in the Technical Presentation event.",
+            "Successfully integrated front/rear propulsion architectures, custom cooling circuits, and Level 2 autonomous perception/control hardware while satisfying strict OEM safety and packaging clearances.",
+            "Mentored and coordinated multi-disciplinary subteams across mechanical packaging, propulsion controls, and vehicle testing."
+          ],
+          tags: ["Systems Integration", "Simscape / Simulink", "SolidWorks & NX", "Thermal & Powertrain", "FEA Structural Design"],
+          diagramType: "lyriq-awd"
+        },
+        {
+          id: "proj-scattering-matrix",
+          title: "Analytical Scattering & Transfer Matrix Framework for Asymmetric Metamaterials",
+          category: "Vibro-Acoustics & Metamaterials",
+          badge: "Impedance Tube & Wave Physics",
+          summary: "Formulated and validated an analytical scattering matrix method (SMM) and transfer matrix method (TMM) framework for four-microphone impedance tube characterization of asymmetric and multilayered acoustic metamaterials, incorporating structural boundary resonances and Fabry-Perot coupling.",
+          problem: "Standard transfer matrix formulations often assume symmetric, homogeneous porous media and break down when characterizing geometrically asymmetric, resonant, or structurally coupled acoustic metamaterials in a four-microphone impedance tube.",
+          approach: "Derived a generalized analytical Scattering Matrix Method (SMM) and Transfer Matrix Method (TMM) accounting for directional reflection asymmetry, structural boundary resonances, and Fabry-Perot coupling across multi-layered domains. Built custom NI DAQ hardware acquisition routines and FFT transfer-function post-processing pipelines in MATLAB to extract complex reflection and transmission coefficients.",
+          results: [
+            "Accurately captured directional reflection phase and amplitude asymmetries in non-homogeneous metamaterial assemblies.",
+            "De-embedded structural boundary resonance modes from Fabry-Perot standing-wave interactions in four-microphone impedance tube measurements.",
+            "Cross-validated analytical matrix predictions against full-wave 3D COMSOL Pressure Acoustics and Structural Mechanics simulations."
+          ],
+          tags: ["MATLAB", "NI DAQ", "Impedance Tube", "Wave Physics", "COMSOL"],
+          diagramType: "impedance-tube"
+        },
+        {
+          id: "proj-ml-inverse-design",
+          title: "Machine Learning for Inverse Metamaterial Design",
+          category: "Analytical & ML Modeling",
+          badge: "Surrogate Modeling & Optimization",
+          summary: "Developed surrogate models and neural network architectures paired with automated COMSOL-MATLAB LiveLink parameter sweeps to perform inverse design of acoustic and elastic metamaterials for targeted frequency bandgaps.",
+          problem: "High-fidelity 3D finite element bandgap and transmission sweeps across high-dimensional metamaterial unit-cell parameter spaces are computationally expensive, creating a bottleneck when synthesizing geometries for custom low-frequency NVH targets.",
+          approach: "Built an automated high-throughput data generation pipeline using COMSOL-MATLAB LiveLink to sample unit-cell geometric parameters and compute dispersion/STL curves. Trained deep neural network surrogate models and coupled them with gradient and evolutionary inverse optimization routines to rapidly identify unit-cell geometries matching user-specified attenuation spectra.",
+          results: [
+            "Reduced unit-cell frequency response evaluation time by orders of magnitude compared to direct 3D FEA solver iterations.",
+            "Enabled rapid inverse synthesis of split-ring and pillar geometric parameters tailored to specific target stopband frequencies.",
+            "Established reusable physics-guided dataset pipelines for structural dynamics and acoustic metamaterial exploration."
+          ],
+          tags: ["Machine Learning", "Surrogate Modeling", "MATLAB LiveLink", "Optimization", "Inverse Design"],
+          diagramType: "ml-inverse"
+        },
+        {
+          id: "proj-ev-thermal-powertrain",
+          title: "Electric Vehicle Thermal & Longitudinal Powertrain Modeling",
+          category: "EV Systems & Controls",
+          badge: "Multi-Domain Plant Modeling",
+          summary: "Built multi-domain plant models for EV thermal cooling loops, motor efficiency maps, and longitudinal driver control algorithms to optimize energy consumption and thermal stability under dynamic drive cycles.",
+          problem: "High-power AWD electric powertrains experience coupled electrical and thermal transients during aggressive drive cycles; sizing radiators, pumps, and torque-split controllers in isolation leads to thermal derating or excess parasitic energy draw.",
+          approach: "Developed coupled 1D multi-physics vehicle plant models in MATLAB/Simulink and Simscape combining front/rear inverter and motor efficiency maps, battery pack heat generation, glycol coolant routing valves, and longitudinal driver/torque-allocation control loops.",
+          results: [
+            "Quantified component temperature trajectories and pump/fan parasitic power across standard and competition drive cycles.",
+            "Optimized thermal loop sizing and cooling control thresholds to prevent motor/inverter thermal derating under peak AWD load.",
+            "Provided plant models directly supporting EcoCAR EV system architecture selection and control software verification."
+          ],
+          tags: ["Simulink", "Simscape", "Controls", "EV Architecture", "Thermal Management"],
+          diagramType: "ev-thermal"
+        }
+      ],
+
+      // 5. Publications & Intellectual Property
+      publications: [
+        {
+          id: "pub-patent-1",
+          type: "Patent",
+          badge: "U.S. Patent Application • Filed",
+          title: "Metamaterial Structure Engineered for Simultaneous Airborne Sound and Structure-Borne Vibration Attenuation",
+          authors: "Prathik Reddy Gunreddy, Karim Sabra, Michael Leamy, et al.",
+          venue: "United States Patent Application (Georgia Tech Research Corporation)",
+          year: "2025",
+          abstract: "A planar hybrid vibro-acoustic metamaterial architecture integrating split-ring resonators (SRRs) attached to a structural backing plate via slender pillars to achieve concurrent airborne sound transmission loss (STL) and multi-polarization structure-borne elastic wave (P, SH, SV) attenuation.",
+          doiUrl: "#contact",
+          pdfUrl: "#contact",
+          bibtex: `@misc{gunreddy_patent_metamaterial,
+  author       = {Gunreddy, Prathik Reddy and Sabra, Karim and Leamy, Michael},
+  title        = {Metamaterial Structure Engineered for Simultaneous Airborne Sound and Structure-Borne Vibration Attenuation},
+  howpublished = {U.S. Patent Application (Filed)},
+  institution  = {Georgia Institute of Technology},
+  year         = {2025}
+}`
+        },
+        {
+          id: "pub-journal-asme",
+          type: "Journal",
+          badge: "Peer-Reviewed Journal Article",
+          title: "Elastic Metamaterials for Bandgap Engineering and Structure-Borne Vibration Control",
+          authors: "Prathik Reddy Gunreddy, et al.",
+          venue: "ASME Journal of Vibration and Acoustics",
+          year: "2024",
+          abstract: "Investigation of locally resonant elastic metamaterial structures for targeted wave propagation manipulation, dispersion bandgap formation, and broadband mechanical vibration suppression.",
+          doiUrl: "#contact",
+          pdfUrl: "#contact",
+          bibtex: `@article{gunreddy_asme_jva,
+  author  = {Gunreddy, Prathik Reddy and Co-authors},
+  title   = {Elastic Metamaterials for Bandgap Engineering and Structure-Borne Vibration Control},
+  journal = {ASME Journal of Vibration and Acoustics},
+  year    = {2024},
+  publisher = {American Society of Mechanical Engineers}
+}`
+        },
+        {
+          id: "pub-manuscript-smm",
+          type: "Manuscript",
+          badge: "Manuscript / Research Output",
+          title: "Analytical Scattering Matrix Characterization of Asymmetric and Non-Homogeneous Acoustic Metamaterials in a Four-Microphone Impedance Tube",
+          authors: "Prathik Reddy Gunreddy, Karim Sabra, Michael Leamy",
+          venue: "Georgia Institute of Technology — Vibro-Acoustics & Wave Propagation Research",
+          year: "2026",
+          abstract: "Formulation and experimental validation of an analytical scattering matrix method (SMM) and transfer matrix method (TMM) framework incorporating structural boundary resonance and reflection matrices to characterize asymmetric acoustic metamaterials in a four-microphone impedance tube.",
+          doiUrl: "#contact",
+          pdfUrl: "#contact",
+          bibtex: `@unpublished{gunreddy_smm_impedance_tube,
+  author = {Gunreddy, Prathik Reddy and Sabra, Karim and Leamy, Michael},
+  title  = {Analytical Scattering Matrix Characterization of Asymmetric and Non-Homogeneous Acoustic Metamaterials in a Four-Microphone Impedance Tube},
+  note   = {Manuscript / Georgia Institute of Technology},
+  year   = {2026}
+}`
+        }
+      ],
+
+      // 6. Technical Arsenal / Skills Matrix
+      skills: [
+        {
+          domain: "Simulation & Numerical Modeling",
+          subtitle: "Multiphysics FEA, Wave Dispersion & System Plant Modeling",
+          icon: "fa-solid fa-cubes",
+          items: [
+            { name: "COMSOL Multiphysics (Pressure Acoustics, Structural Mechanics, Bandgap Dispersion, LiveLink)", level: "Expert" },
+            { name: "MATLAB (Numerical Solvers, Signal Processing, Matrix Formulations)", level: "Expert" },
+            { name: "Simulink & Simscape (1D Multi-Domain EV Plant & Thermal Modeling)", level: "Advanced" },
+            { name: "Finite Element Analysis (FEA) — Modal, Harmonic, Bloch-Floquet & Structural Loads", level: "Expert" }
+          ]
+        },
+        {
+          domain: "Experimental Vibro-Acoustics & Prototyping",
+          subtitle: "Hardware Testing, Data Acquisition & Additive Manufacturing",
+          icon: "fa-solid fa-wave-square",
+          items: [
+            { name: "Four-Microphone Impedance Tube Testing (ASTM E2611 / Custom Asymmetric Setups)", level: "Expert" },
+            { name: "National Instruments (NI) DAQ Hardware Control & Sensor Calibration", level: "Advanced" },
+            { name: "Custom Signal Acquisition, Windowing & FFT Transfer Function Processing", level: "Expert" },
+            { name: "Bambu Lab X1E Additive Manufacturing (Precision PLA Acoustic/Elastic Metamaterials)", level: "Expert" }
+          ]
+        },
+        {
+          domain: "CAD, Vehicle Systems & Manufacturing",
+          subtitle: "Automotive Architecture Packaging & Structural Integration",
+          icon: "fa-solid fa-car-battery",
+          items: [
+            { name: "SolidWorks & Siemens NX (Complex Assembly Packaging, Surfacing & Routing)", level: "Expert" },
+            { name: "GD&T, Subframe & Structural Mounting Design, Bracketry Optimization", level: "Advanced" },
+            { name: "EV Thermal & Powertrain Integration (2023 Cadillac LYRIQ AWD Architecture)", level: "Expert" },
+            { name: "Design for Manufacturing & Assembly (DFM / DFA) & Rapid Prototyping", level: "Advanced" }
+          ]
+        },
+        {
+          domain: "Data Science & Analytical Methods",
+          subtitle: "Theoretical Wave Mechanics & Physics-Informed ML",
+          icon: "fa-solid fa-brain",
+          items: [
+            { name: "Transfer Matrix & Scattering Matrix Formulations (TMM / SMM)", level: "Expert" },
+            { name: "Neural Network Surrogate Modeling for Metamaterial Frequency Response", level: "Advanced" },
+            { name: "Inverse Design Optimization & Automated Parameter Sweeps", level: "Advanced" },
+            { name: "Engineering Data Mining, Regression & Dimensionality Reduction", level: "Advanced" }
+          ]
+        }
+      ],
+
+      // 7. Experience & Education Timeline
+      timeline: [
+        {
+          role: "Ph.D. Candidate in Mechanical Engineering",
+          organization: "Georgia Institute of Technology",
+          location: "Atlanta, GA",
+          period: "Expected May 2027",
+          badge: "Graduate Research",
+          highlights: [
+            "Advised by Dr. Karim Sabra and Dr. Michael Leamy in the George W. Woodruff School of Mechanical Engineering.",
+            "Research focus: Hybrid vibro-acoustic and elastic metamaterials, structural dynamics, analytical scattering matrix formulations, and inverse metamaterial design.",
+            "Lead inventor on a filed U.S. Patent application for planar hybrid metamaterials achieving simultaneous airborne sound (STL) and structure-borne (P, SH, SV) vibration attenuation."
+          ]
+        },
+        {
+          role: "System Design & Integration (SDI) Lead",
+          organization: "Georgia Tech EcoCAR EV Challenge Team",
+          location: "Atlanta, GA",
+          period: "4 Years • National Champions",
+          badge: "1st Place Overall",
+          highlights: [
+            "Directed cross-functional engineering subteams for 4 years to re-architect a RWD 2023 Cadillac LYRIQ into a high-performance AWD electric vehicle.",
+            "Led vehicle architecture selection, 3D CAD packaging (Siemens NX / SolidWorks), structural subframe integration, thermal cooling system design, and competition technical presentations.",
+            "Culminated in winning 1st Place Overall Nationally and 1st Place in the Technical Presentation event."
+          ]
+        },
+        {
+          role: "Graduate Teaching & Engineering Mentor",
+          organization: "Georgia Institute of Technology",
+          location: "Atlanta, GA",
+          period: "Graduate Appointment",
+          badge: "Teaching & Mentorship",
+          highlights: [
+            "Mentored undergraduate and graduate mechanical engineering students in computer-aided design (SolidWorks), engineering design methodology, and structural analysis.",
+            "Guided junior EcoCAR System Design & Integration subteam engineers in automotive packaging standards, GD&T, and design review readiness."
+          ]
+        },
+        {
+          role: "Bachelor of Technology (B.Tech) in Mechanical Engineering",
+          organization: "Indian Institute of Technology (IIT) Bombay",
+          location: "Mumbai, India",
+          period: "Undergraduate Degree",
+          badge: "IIT Bombay",
+          highlights: [
+            "Rigorous analytical foundation in solid mechanics, mechanical vibrations, continuum mechanics, thermodynamics, and numerical methods.",
+            "Developed early research experience in elastic wave propagation and computational mechanics."
+          ]
+        }
+      ]
+    };
+
+    // ============================================================================
+    // CUSTOM SVG TECHNICAL DIAGRAMS FOR PROJECT CARDS & CASE STUDY MODAL
+    // ============================================================================
+    function getProjectDiagramSVG(type) {
+      switch (type) {
+        case "srr-metamaterial":
+          return `
+            <svg viewBox="0 0 420 180" class="w-full h-44 text-gtgold-400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="420" height="180" rx="8" fill="#090f1d"/>
+              <!-- Grid -->
+              <path d="M0 45 H420 M0 90 H420 M0 135 H420 M70 0 V180 M140 0 V180 M210 0 V180 M280 0 V180 M350 0 V180" stroke="#1e293b" stroke-width="1"/>
+              <!-- Incident Airborne Sound Wave -->
+              <path d="M 22 45 Q 32 30, 42 45 T 62 45 T 82 45" stroke="#38bdf8" stroke-width="2" fill="none"/>
+              <text x="18" y="28" fill="#38bdf8" font-family="JetBrains Mono" font-size="9">AIRBORNE SOUND (STL)</text>
+              <!-- Backing Plate + SRR Unit Cell -->
+              <rect x="125" y="125" width="170" height="14" rx="3" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+              <rect x="204" y="96" width="12" height="29" fill="#d8a738"/>
+              <!-- Split Ring Resonator -->
+              <path d="M 150 75 A 60 22 0 1 1 265 70" stroke="#d8a738" stroke-width="7" stroke-linecap="round"/>
+              <path d="M 170 75 A 40 14 0 1 0 245 78" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+              <!-- Elastic Waves in Plate (P, SH, SV) -->
+              <path d="M 35 132 Q 50 118, 65 132 T 95 132 T 125 132" stroke="#f43f5e" stroke-width="2" fill="none"/>
+              <path d="M 295 132 L 385 132" stroke="#10b981" stroke-width="2" stroke-dasharray="4 4"/>
+              <text x="20" y="158" fill="#f43f5e" font-family="JetBrains Mono" font-size="9">ELASTIC WAVE (P / SH / SV)</text>
+              <text x="285" y="158" fill="#10b981" font-family="JetBrains Mono" font-size="9">ATTENUATED OUTPUT</text>
+              <text x="148" y="34" fill="#e2e8f0" font-family="JetBrains Mono" font-size="9.5">SRR + SLENDER PILLAR + PLATE</text>
+            </svg>`;
+        case "lyriq-awd":
+          return `
+            <svg viewBox="0 0 420 180" class="w-full h-44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="420" height="180" rx="8" fill="#090f1d"/>
+              <path d="M0 45 H420 M0 90 H420 M0 135 H420 M70 0 V180 M210 0 V180 M350 0 V180" stroke="#1e293b" stroke-width="1"/>
+              <!-- Chassis Outline -->
+              <rect x="65" y="38" width="290" height="104" rx="22" stroke="#475569" stroke-width="2" stroke-dasharray="6 4"/>
+              <!-- Wheels -->
+              <rect x="85" y="22" width="42" height="16" rx="4" fill="#334155" stroke="#d8a738" stroke-width="1.5"/>
+              <rect x="85" y="142" width="42" height="16" rx="4" fill="#334155" stroke="#d8a738" stroke-width="1.5"/>
+              <rect x="293" y="22" width="42" height="16" rx="4" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+              <rect x="293" y="142" width="42" height="16" rx="4" fill="#334155" stroke="#38bdf8" stroke-width="1.5"/>
+              <!-- Front EDU + Subframe (Custom AWD Addition) -->
+              <rect x="92" y="68" width="52" height="44" rx="6" fill="#d8a738" fill-opacity="0.2" stroke="#d8a738" stroke-width="2"/>
+              <text x="99" y="93" fill="#fbbf24" font-family="JetBrains Mono" font-size="8.5" font-weight="bold">FWD EDU</text>
+              <!-- HV Battery Pack Center -->
+              <rect x="165" y="56" width="95" height="68" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.8"/>
+              <text x="176" y="88" fill="#10b981" font-family="JetBrains Mono" font-size="8.5">ULTIUM HV PACK</text>
+              <text x="176" y="102" fill="#94a3b8" font-family="JetBrains Mono" font-size="7.5">+ THERMAL LOOP</text>
+              <!-- Rear EDU -->
+              <rect x="282" y="68" width="50" height="44" rx="6" fill="#38bdf8" fill-opacity="0.15" stroke="#38bdf8" stroke-width="2"/>
+              <text x="290" y="93" fill="#38bdf8" font-family="JetBrains Mono" font-size="8.5" font-weight="bold">RWD EDU</text>
+              <!-- Thermal & HV Bus Lines -->
+              <path d="M 144 82 H 165 M 260 82 H 282" stroke="#f59e0b" stroke-width="2.5"/>
+              <path d="M 144 98 H 165 M 260 98 H 282" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3"/>
+              <text x="115" y="172" fill="#cbd5e1" font-family="JetBrains Mono" font-size="9">2023 CADILLAC LYRIQ AWD ARCHITECTURE • 1ST PLACE</text>
+            </svg>`;
+        case "impedance-tube":
+          return `
+            <svg viewBox="0 0 420 180" class="w-full h-44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="420" height="180" rx="8" fill="#090f1d"/>
+              <!-- Tube Walls -->
+              <rect x="25" y="65" width="370" height="55" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+              <!-- Asymmetric Metamaterial Sample in Middle -->
+              <rect x="190" y="67" width="42" height="51" fill="#d8a738" fill-opacity="0.25" stroke="#d8a738" stroke-width="2"/>
+              <line x1="212" y1="67" x2="212" y2="118" stroke="#38bdf8" stroke-width="2" stroke-dasharray="3 3"/>
+              <!-- 4 Microphones -->
+              <circle cx="95" cy="52" r="5" fill="#38bdf8"/><line x1="95" y1="57" x2="95" y2="68" stroke="#38bdf8" stroke-width="2"/>
+              <circle cx="145" cy="52" r="5" fill="#38bdf8"/><line x1="145" y1="57" x2="145" y2="68" stroke="#38bdf8" stroke-width="2"/>
+              <circle cx="275" cy="52" r="5" fill="#10b981"/><line x1="275" y1="57" x2="275" y2="68" stroke="#10b981" stroke-width="2"/>
+              <circle cx="325" cy="52" r="5" fill="#10b981"/><line x1="325" y1="57" x2="325" y2="68" stroke="#10b981" stroke-width="2"/>
+              <text x="82" y="40" fill="#38bdf8" font-family="JetBrains Mono" font-size="8.5">MIC 1   MIC 2</text>
+              <text x="262" y="40" fill="#10b981" font-family="JetBrains Mono" font-size="8.5">MIC 3   MIC 4</text>
+              <!-- Forward & Backward Traveling Waves -->
+              <path d="M 45 85 L 175 85" stroke="#f59e0b" stroke-width="2"/>
+              <path d="M 175 102 L 45 102" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/>
+              <path d="M 245 85 L 365 85" stroke="#10b981" stroke-width="2"/>
+              <text x="65" y="148" fill="#e2e8f0" font-family="JetBrains Mono" font-size="9">[S] = [T11, T12; T21, T22] • 4-MIC SMM CHARACTERIZATION</text>
+            </svg>`;
+        case "ml-inverse":
+          return `
+            <svg viewBox="0 0 420 180" class="w-full h-44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="420" height="180" rx="8" fill="#090f1d"/>
+              <!-- Left: Target Bandgap Curve -->
+              <rect x="24" y="32" width="110" height="110" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+              <path d="M 35 120 Q 55 118, 70 60 Q 80 38, 92 75 T 124 115" stroke="#d8a738" stroke-width="2.5" fill="none"/>
+              <rect x="64" y="42" width="28" height="88" fill="#d8a738" fill-opacity="0.12"/>
+              <text x="32" y="24" fill="#d8a738" font-family="JetBrains Mono" font-size="8.5">TARGET STL / STOPBAND</text>
+              <!-- Middle: Neural Network Surrogate Nodes -->
+              <circle cx="175" cy="55" r="7" fill="#38bdf8"/><circle cx="175" cy="90" r="7" fill="#38bdf8"/><circle cx="175" cy="125" r="7" fill="#38bdf8"/>
+              <circle cx="225" cy="45" r="7" fill="#d8a738"/><circle cx="225" cy="75" r="7" fill="#d8a738"/><circle cx="225" cy="105" r="7" fill="#d8a738"/><circle cx="225" cy="135" r="7" fill="#d8a738"/>
+              <circle cx="275" cy="68" r="7" fill="#10b981"/><circle cx="275" cy="112" r="7" fill="#10b981"/>
+              <path d="M182 55 L218 45 M182 55 L218 75 M182 90 L218 75 M182 90 L218 105 M182 125 L218 105 M182 125 L218 135 M232 45 L268 68 M232 75 L268 68 M232 105 L268 112 M232 135 L268 112" stroke="#475569" stroke-width="1.2"/>
+              <!-- Right: Synthesized Geometry Parameters -->
+              <rect x="305" y="38" width="92" height="98" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.5"/>
+              <circle cx="351" cy="87" r="26" stroke="#d8a738" stroke-width="4" stroke-dasharray="120 25"/>
+              <circle cx="351" cy="87" r="14" stroke="#38bdf8" stroke-width="3" stroke-dasharray="60 20"/>
+              <text x="155" y="164" fill="#cbd5e1" font-family="JetBrains Mono" font-size="9">COMSOL-MATLAB LIVELINK + SURROGATE INVERSE DESIGN</text>
+            </svg>`;
+        default:
+          return `
+            <svg viewBox="0 0 420 180" class="w-full h-44" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="420" height="180" rx="8" fill="#090f1d"/>
+              <!-- Block Diagram for EV Thermal & Powertrain -->
+              <rect x="28" y="52" width="88" height="65" rx="6" fill="#0f172a" stroke="#38bdf8" stroke-width="1.8"/>
+              <text x="40" y="82" fill="#38bdf8" font-family="JetBrains Mono" font-size="8.5">DRIVER &</text>
+              <text x="40" y="96" fill="#38bdf8" font-family="JetBrains Mono" font-size="8.5">TORQUE CTRL</text>
+              <path d="M 116 85 H 155" stroke="#94a3b8" stroke-width="2"/>
+              <rect x="155" y="52" width="105" height="65" rx="6" fill="#0f172a" stroke="#d8a738" stroke-width="1.8"/>
+              <text x="167" y="82" fill="#fbbf24" font-family="JetBrains Mono" font-size="8.5">EDU + INVERTER</text>
+              <text x="167" y="96" fill="#94a3b8" font-family="JetBrains Mono" font-size="8">EFFICIENCY MAP</text>
+              <path d="M 260 85 H 298" stroke="#f43f5e" stroke-width="2"/>
+              <rect x="298" y="52" width="94" height="65" rx="6" fill="#0f172a" stroke="#10b981" stroke-width="1.8"/>
+              <text x="310" y="82" fill="#10b981" font-family="JetBrains Mono" font-size="8.5">SIMSCAPE</text>
+              <text x="310" y="96" fill="#10b981" font-family="JetBrains Mono" font-size="8">COOLING LOOP</text>
+              <text x="65" y="154" fill="#cbd5e1" font-family="JetBrains Mono" font-size="9">COUPLED LONGITUDINAL POWERTRAIN & THERMAL PLANT</text>
+            </svg>`;
+      }
+    }
+
+    // ============================================================================
+    // APPLICATION STATE & RENDERING FUNCTIONS
+    // ============================================================================
+    let currentProjectCategory = "All";
+    let currentPubFilter = "All";
+    let activeModalProjectId = null;
+
+    function initPortfolio() {
+      // Populate Profile & Hero
+      document.getElementById("nav-name").textContent = PORTFOLIO_DATA.profile.name;
+      document.getElementById("nav-subtitle").textContent = PORTFOLIO_DATA.profile.navSubtitle;
+      document.getElementById("hero-status").textContent = PORTFOLIO_DATA.profile.statusBadge;
+      document.getElementById("hero-name").textContent = PORTFOLIO_DATA.profile.name;
+      document.getElementById("hero-bio").textContent = PORTFOLIO_DATA.profile.bio;
+      document.getElementById("contact-email-display").textContent = PORTFOLIO_DATA.profile.email;
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      // If user configured a profileImage URL in PORTFOLIO_DATA
+      if (PORTFOLIO_DATA.profile.profileImage && PORTFOLIO_DATA.profile.profileImage.trim() !== "") {
+        const imgEl = document.getElementById("profile-photo-img");
+        imgEl.src = PORTFOLIO_DATA.profile.profileImage;
+        imgEl.classList.remove("hidden");
+        document.getElementById("profile-placeholder-graphic").classList.add("hidden");
+      }
+
+      renderSocialLinks();
+      renderMetricsBanner();
+      renderProjectFilterTabs();
+      renderProjectsGrid();
+      renderPublicationsList();
+      renderSkillsMatrix();
+      renderTimeline();
+    }
+
+    function renderSocialLinks() {
+      const heroContainer = document.getElementById("hero-social-links");
+      const footerContainer = document.getElementById("footer-social-buttons");
+
+      heroContainer.innerHTML = PORTFOLIO_DATA.profile.socials.map(s => `
+        <a href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}" title="${s.label}"
+           class="w-10 h-10 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-navy-900 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-gtgold-500 dark:hover:border-gtgold-400 hover:text-gtgold-600 dark:hover:text-gtgold-400 transition-all">
+          <i class="${s.icon} text-sm"></i>
+        </a>
+      `).join("");
+
+      footerContainer.innerHTML = PORTFOLIO_DATA.profile.socials.slice(0, 3).map(s => `
+        <a href="${s.url}" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-navy-850 hover:bg-slate-800 border border-slate-700 text-xs font-mono text-slate-200 hover:text-gtgold-400 transition-colors">
+          <i class="${s.icon}"></i>
+          <span class="truncate">${s.label.replace('Google ', '')}</span>
+        </a>
+      `).join("");
+    }
+
+    function renderMetricsBanner() {
+      const container = document.getElementById("impact-metrics-grid");
+      container.innerHTML = PORTFOLIO_DATA.metrics.map(m => `
+        <div class="p-5 rounded-2xl bg-white dark:bg-navy-900/90 border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col justify-between gap-3 card-lift">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-xs uppercase tracking-wider text-gtgold-600 dark:text-gtgold-400 font-semibold">${m.title}</span>
+            <span class="w-8 h-8 rounded-lg bg-gtgold-50 dark:bg-gtgold-400/10 border border-gtgold-200 dark:border-gtgold-400/20 flex items-center justify-center text-gtgold-600 dark:text-gtgold-400">
+              <i class="${m.icon} text-xs"></i>
+            </span>
+          </div>
+          <div>
+            <div class="font-display text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">${m.metric}</div>
+            <p class="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">${m.detail}</p>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderProjectFilterTabs() {
+      const categories = [
+        "All",
+        "Vibro-Acoustics & Metamaterials",
+        "EV Systems & Controls",
+        "Analytical & ML Modeling"
+      ];
+      const container = document.getElementById("project-filter-tabs");
+      container.innerHTML = categories.map(cat => {
+        const isActive = cat === currentProjectCategory;
+        const count = cat === "All"
+          ? PORTFOLIO_DATA.projects.length
+          : PORTFOLIO_DATA.projects.filter(p => p.category === cat).length;
+
+        return `
+          <button onclick="setProjectCategory('${cat}')"
+                  class="px-4 py-2 rounded-xl font-mono text-xs font-medium transition-all flex items-center gap-2 ${
+                    isActive
+                      ? 'bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 shadow-sm font-semibold'
+                      : 'bg-slate-100 dark:bg-navy-950 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-transparent hover:border-slate-300 dark:hover:border-slate-700'
+                  }">
+            <span>${cat}</span>
+            <span class="px-1.5 py-0.2 rounded text-[10px] ${isActive ? 'bg-white/20 dark:bg-navy-950/20' : 'bg-slate-200 dark:bg-slate-800'}">${count}</span>
+          </button>
+        `;
+      }).join("");
+    }
+
+    function setProjectCategory(category) {
+      currentProjectCategory = category;
+      renderProjectFilterTabs();
+      renderProjectsGrid();
+    }
+
+    function renderProjectsGrid() {
+      const container = document.getElementById("projects-grid");
+      const filtered = currentProjectCategory === "All"
+        ? PORTFOLIO_DATA.projects
+        : PORTFOLIO_DATA.projects.filter(p => p.category === currentProjectCategory);
+
+      container.innerHTML = filtered.map(proj => `
+        <article onclick="openCaseStudyModal('${proj.id}')"
+                 class="group cursor-pointer rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800/90 hover:border-gtgold-500 dark:hover:border-gtgold-400/70 overflow-hidden flex flex-col justify-between card-lift shadow-sm">
+          <div>
+            <!-- Top Technical Diagram / Visual Header -->
+            <div class="relative border-b border-slate-200 dark:border-slate-800/80 bg-navy-950 overflow-hidden">
+              ${proj.customImage ? `<img src="${proj.customImage}" alt="${proj.title}" class="w-full h-44 object-cover" />` : getProjectDiagramSVG(proj.diagramType)}
+              <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-md font-mono text-[10px] font-medium bg-navy-950/90 text-gtgold-400 border border-gtgold-400/30 backdrop-blur-sm">
+                  ${proj.badge}
+                </span>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 space-y-3">
+              <div class="font-mono text-[11px] text-gtgold-600 dark:text-gtgold-400 uppercase tracking-wider">
+                ${proj.category}
+              </div>
+              <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white group-hover:text-gtgold-600 dark:group-hover:text-gtgold-400 transition-colors leading-snug">
+                ${proj.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+                ${proj.summary}
+              </p>
+            </div>
+          </div>
+
+          <!-- Card Footer: Tech Tags + Case Study Trigger -->
+          <div class="px-6 pb-6 pt-2 space-y-4">
+            <div class="flex flex-wrap gap-1.5">
+              ${proj.tags.map(t => `
+                <span class="px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-mono text-[11px]">
+                  ${t}
+                </span>
+              `).join("")}
+            </div>
+            <div class="pt-3 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between text-xs font-display font-semibold text-slate-800 dark:text-gtgold-400">
+              <span>Inspect Engineering Case Study</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[11px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // ============================================================================
+    // CASE STUDY MODAL LOGIC
+    // ============================================================================
+    function openCaseStudyModal(projectId) {
+      const proj = PORTFOLIO_DATA.projects.find(p => p.id === projectId);
+      if (!proj) return;
+      activeModalProjectId = projectId;
+
+      document.getElementById("modal-project-category").textContent = proj.category;
+      document.getElementById("modal-project-badge").textContent = proj.badge;
+      document.getElementById("modal-project-title").textContent = proj.title;
+      document.getElementById("modal-project-subtitle").textContent = proj.summary;
+      document.getElementById("modal-project-problem").textContent = proj.problem;
+      document.getElementById("modal-project-approach").textContent = proj.approach;
+
+      const visualContainer = document.getElementById("modal-visual-container");
+      if (proj.customImage) {
+        visualContainer.innerHTML = `<img src="${proj.customImage}" alt="${proj.title}" class="max-h-72 rounded-lg object-contain" />`;
+      } else {
+        visualContainer.innerHTML = `<div class="w-full max-w-xl">${getProjectDiagramSVG(proj.diagramType)}</div>`;
+      }
+
+      document.getElementById("modal-project-results").innerHTML = (proj.results || []).map(r => `
+        <li class="flex items-start gap-2.5">
+          <i class="fa-solid fa-check text-gtgold-500 mt-1 text-xs"></i>
+          <span>${r}</span>
+        </li>
+      `).join("");
+
+      document.getElementById("modal-project-tags").innerHTML = (proj.tags || []).map(t => `
+        <span class="px-3 py-1 rounded-lg bg-slate-100 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 font-mono text-xs text-slate-700 dark:text-slate-300">
+          ${t}
+        </span>
+      `).join("");
+
+      document.getElementById("case-study-modal").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeCaseStudyModal() {
+      document.getElementById("case-study-modal").classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function handleModalImagePreview(event) {
+      const file = event.target.files[0];
+      if (!file || !activeModalProjectId) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const proj = PORTFOLIO_DATA.projects.find(p => p.id === activeModalProjectId);
+        if (proj) {
+          proj.customImage = e.target.result;
+          document.getElementById("modal-visual-container").innerHTML = `<img src="${e.target.result}" class="max-h-72 rounded-lg object-contain" />`;
+          renderProjectsGrid();
+          showToast("Updated project visual preview!");
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ============================================================================
+    // PUBLICATIONS & INTELLECTUAL PROPERTY RENDERING
+    // ============================================================================
+    function filterPublications(type) {
+      currentPubFilter = type;
+      document.querySelectorAll(".pub-filter-btn").forEach(btn => {
+        const isMatch = btn.getAttribute("data-pub-filter") === type;
+        btn.className = isMatch
+          ? "pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 transition-colors"
+          : "pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-navy-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors";
+      });
+      renderPublicationsList();
+    }
+
+    function renderPublicationsList() {
+      const container = document.getElementById("publications-list");
+      const filtered = currentPubFilter === "All"
+        ? PORTFOLIO_DATA.publications
+        : PORTFOLIO_DATA.publications.filter(p => p.type === currentPubFilter);
+
+      container.innerHTML = filtered.map((pub, idx) => {
+        const badgeColors = pub.type === "Patent"
+          ? "bg-amber-500/15 text-amber-700 dark:text-gtgold-300 border-amber-500/30"
+          : pub.type === "Journal"
+          ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border-emerald-500/30"
+          : "bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/30";
+
+        return `
+          <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="space-y-2.5 max-w-4xl">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <span class="font-mono text-xs text-slate-400">[0${idx + 1}]</span>
+                <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-medium border ${badgeColors}">
+                  ${pub.badge}
+                </span>
+                <span class="font-mono text-xs text-slate-500 dark:text-slate-400">${pub.year}</span>
+              </div>
+              <h3 class="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
+                ${pub.title}
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium">
+                ${pub.authors} — <em class="text-slate-800 dark:text-gtgold-300 not-italic font-mono text-xs">${pub.venue}</em>
+              </p>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed pt-1">
+                ${pub.abstract}
+              </p>
+            </div>
+
+            <div class="flex flex-wrap lg:flex-col items-stretch gap-2 shrink-0">
+              <button onclick="openBibtexModal('${pub.id}')"
+                      class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-slate-100 dark:bg-navy-950 text-slate-700 dark:text-gtgold-400 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">
+                <i class="fa-solid fa-quote-right text-[10px]"></i>
+                <span>Cite (BibTeX)</span>
+              </button>
+              <a href="${pub.doiUrl}"
+                 class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-white dark:bg-navy-950 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-slate-400 transition-colors">
+                <i class="fa-solid fa-file-lines text-[10px]"></i>
+                <span>Preprint / Request PDF</span>
+              </a>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // ============================================================================
+    // SKILLS MATRIX & TIMELINE RENDERING
+    // ============================================================================
+    function renderSkillsMatrix() {
+      const container = document.getElementById("skills-grid");
+      container.innerHTML = PORTFOLIO_DATA.skills.map(group => `
+        <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-5">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white">${group.domain}</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">${group.subtitle}</p>
+            </div>
+            <div class="w-10 h-10 rounded-xl bg-gtgold-400/15 border border-gtgold-400/30 flex items-center justify-center text-gtgold-600 dark:text-gtgold-400 shrink-0">
+              <i class="${group.icon}"></i>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            ${group.items.map(skill => `
+              <div class="p-3 rounded-xl bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between gap-3">
+                <span class="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">${skill.name}</span>
+                <span class="shrink-0 px-2 py-0.5 rounded font-mono text-[10px] font-semibold ${
+                  skill.level === 'Expert'
+                    ? 'bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30'
+                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                }">
+                  ${skill.level}
+                </span>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderTimeline() {
+      const container = document.getElementById("timeline-list");
+      container.innerHTML = PORTFOLIO_DATA.timeline.map(item => `
+        <div class="relative group">
+          <!-- Timeline Node Dot -->
+          <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-navy-950 border-2 border-gtgold-500 group-hover:scale-125 transition-transform"></span>
+
+          <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-medium bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30">
+                  ${item.badge}
+                </span>
+                <span class="font-mono text-xs text-slate-500 dark:text-slate-400">${item.period}</span>
+              </div>
+              <span class="font-mono text-xs text-slate-500 dark:text-slate-400">
+                <i class="fa-solid fa-location-dot text-gtgold-500 mr-1"></i>${item.location}
+              </span>
+            </div>
+
+            <div>
+              <h3 class="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">${item.role}</h3>
+              <div class="text-sm font-semibold text-gtgold-600 dark:text-gtgold-400">${item.organization}</div>
+            </div>
+
+            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pt-1">
+              ${item.highlights.map(h => `
+                <li class="flex items-start gap-2.5">
+                  <span class="text-gtgold-500 mt-1">•</span>
+                  <span>${h}</span>
+                </li>
+              `).join("")}
+            </ul>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // ============================================================================
+    // INTERACTIVE FEATURES: PHOTO UPLOAD, PROJECT BUILDER, BIBTEX & EXPORT
+    // ============================================================================
+    function handleProfilePhotoUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const imgEl = document.getElementById("profile-photo-img");
+        imgEl.src = e.target.result;
+        imgEl.classList.remove("hidden");
+        document.getElementById("profile-placeholder-graphic").classList.add("hidden");
+        document.getElementById("reset-photo-btn").classList.remove("hidden");
+        showToast("Portrait preview updated!");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function resetProfilePhoto() {
+      const imgEl = document.getElementById("profile-photo-img");
+      imgEl.src = "";
+      imgEl.classList.add("hidden");
+      document.getElementById("profile-placeholder-graphic").classList.remove("hidden");
+      document.getElementById("reset-photo-btn").classList.add("hidden");
+      showToast("Reset to default technical graphic");
+    }
+
+    function openProjectEditorModal() {
+      document.getElementById("project-editor-modal").classList.remove("hidden");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProjectEditorModal() {
+      document.getElementById("project-editor-modal").classList.add("hidden");
+      document.body.style.overflow = "";
+    }
+
+    function handleSaveProject(event) {
+      event.preventDefault();
+      const title = document.getElementById("form-proj-title").value.trim();
+      const category = document.getElementById("form-proj-category").value;
+      const badge = document.getElementById("form-proj-badge").value.trim() || "R&D Case Study";
+      const tagsRaw = document.getElementById("form-proj-tags").value.trim();
+      const summary = document.getElementById("form-proj-summary").value.trim();
+      const problem = document.getElementById("form-proj-problem").value.trim() || summary;
+      const approach = document.getElementById("form-proj-approach").value.trim() || "Analytical modeling, numerical simulation, and experimental validation.";
+      const resultsRaw = document.getElementById("form-proj-results").value.trim();
+
+      const newProj = {
+        id: "proj-custom-" + Date.now(),
+        title,
+        category,
+        badge,
+        summary,
+        problem,
+        approach,
+        results: resultsRaw ? resultsRaw.split("\n").map(s => s.trim()).filter(Boolean) : ["Validated performance across target operating regime."],
+        tags: tagsRaw ? tagsRaw.split(",").map(s => s.trim()).filter(Boolean) : ["COMSOL", "MATLAB", "R&D"],
+        diagramType: category.includes("Vibro") ? "srr-metamaterial" : category.includes("EV") ? "lyriq-awd" : "ml-inverse"
+      };
+
+      PORTFOLIO_DATA.projects.unshift(newProj);
+      currentProjectCategory = "All";
+      renderProjectFilterTabs();
+      renderProjectsGrid();
+      closeProjectEditorModal();
+      document.getElementById("add-project-form").reset();
+      showToast("Added new project card! Click 'Export Data' to copy JSON.");
+    }
+
+    function exportPortfolioConfig() {
+      const jsonStr = "const PORTFOLIO_DATA = " + JSON.stringify(PORTFOLIO_DATA, null, 2) + ";";
+      document.getElementById("bibtex-modal-title").textContent = "Export Updated PORTFOLIO_DATA Configuration";
+      document.getElementById("bibtex-code-block").textContent = jsonStr;
+      document.getElementById("bibtex-modal").classList.remove("hidden");
+    }
+
+    function openBibtexModal(pubId) {
+      const pub = PORTFOLIO_DATA.publications.find(p => p.id === pubId);
+      if (!pub) return;
+      document.getElementById("bibtex-modal-title").textContent = "BibTeX Citation — " + pub.type;
+      document.getElementById("bibtex-code-block").textContent = pub.bibtex;
+      document.getElementById("bibtex-modal").classList.remove("hidden");
+    }
+
+    function closeBibtexModal() {
+      document.getElementById("bibtex-modal").classList.add("hidden");
+    }
+
+    function copyBibtexCode() {
+      const text = document.getElementById("bibtex-code-block").textContent;
+      copyTextToClipboard(text, "Copied code block to clipboard!");
+    }
+
+    function openCvModal() {
+      document.getElementById("cv-modal").classList.remove("hidden");
+    }
+
+    function closeCvModal() {
+      document.getElementById("cv-modal").classList.add("hidden");
+    }
+
+    function copyEmailAddress() {
+      copyTextToClipboard(PORTFOLIO_DATA.profile.email, "Copied email: " + PORTFOLIO_DATA.profile.email);
+    }
+
+    function copyTextToClipboard(text, successMsg) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        showToast(successMsg);
+      } catch (err) {
+        showToast("Please copy manually.");
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function showToast(message) {
+      const banner = document.getElementById("toast-banner");
+      document.getElementById("toast-message").textContent = message;
+      banner.classList.remove("hidden");
+      banner.classList.add("flex");
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        banner.classList.add("hidden");
+        banner.classList.remove("flex");
+      }, 3200);
+    }
+
+    function toggleDeployGuide() {
+      const content = document.getElementById("deploy-guide-content");
+      const chevron = document.getElementById("deploy-guide-chevron");
+      content.classList.toggle("hidden");
+      chevron.classList.toggle("rotate-180");
+    }
+
+    // Theme Toggle & Mobile Menu Setup
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.documentElement.classList.toggle("dark");
+      const isDark = document.documentElement.classList.contains("dark");
+      showToast(isDark ? "Switched to Executive Dark Mode" : "Switched to Crisp Light Mode");
+    });
+
+    document.getElementById("mobile-menu-btn").addEventListener("click", () => {
+      document.getElementById("mobile-menu").classList.toggle("hidden");
+    });
+
+    document.querySelectorAll(".mobile-nav-link").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("mobile-menu").classList.add("hidden");
+      });
+    });
+
+    // Close modals on Escape key
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeCaseStudyModal();
+        closeProjectEditorModal();
+        closeBibtexModal();
+        closeCvModal();
+      }
+    });
+
+    // Initialize on load
+    window.addEventListener("DOMContentLoaded", initPortfolio);
+  </script>
 </body>
 </html>
