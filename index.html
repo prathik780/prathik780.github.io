@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prathik Reddy Gunreddy | Ph.D. Candidate — Georgia Tech | Vibro-Acoustics & EV Systems</title>
   <meta name="description" content="Executive engineering & academic R&D portfolio of Prathik Reddy Gunreddy, Ph.D. Candidate in Mechanical Engineering at Georgia Tech (B.Tech, IIT Bombay). Specializing in Vibro-Acoustic Metamaterials, Structural Dynamics, and EV Systems Architecture." />
+
+  <!-- Theme Preference Initialization (Default: Light Mode) -->
+  <script>
+    try {
+      if (localStorage.getItem("theme") === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } catch (e) {}
+  </script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -1567,6 +1578,9 @@
     document.getElementById("theme-toggle").addEventListener("click", () => {
       document.documentElement.classList.toggle("dark");
       const isDark = document.documentElement.classList.contains("dark");
+      try {
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+      } catch (e) {}
       showToast(isDark ? "Switched to Executive Dark Mode" : "Switched to Crisp Light Mode");
     });
 
@@ -1594,7 +1608,7 @@
     // ============================================================================
     const CAR_QUOTES = [
       "Too fast to catch it? ⚡",
-      "Too efficient to run out of energy 🌿"
+      "Too efficient to run out of energy as well 🌿"
     ];
     let carQuoteIdx = 0;
 
