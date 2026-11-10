@@ -91,14 +91,12 @@
       position: fixed;
       z-index: 50;
       width: 175px;
-      height: 62px;
+      height: 62.5px;
       pointer-events: auto;
       cursor: pointer;
       user-select: none;
       filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
-      transition: left 1.8s cubic-bezier(0.25, 1, 0.5, 1),
-                  top 1.8s cubic-bezier(0.25, 1, 0.5, 1),
-                  transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+      will-change: left, top, transform;
     }
     .roaming-car-wrapper:hover {
       filter: drop-shadow(0 0 16px rgba(216, 167, 56, 0.9)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
@@ -107,10 +105,19 @@
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
     }
+    /* Rolling Wheel Animation */
+    @keyframes wheelRollCW {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .car-wheel-rolling {
+      animation: wheelRollCW 0.6s linear infinite;
+      transform-origin: center center;
+    }
     @media (max-width: 640px) {
       .roaming-car-wrapper {
         width: 125px;
-        height: 45px;
+        height: 44.6px;
       }
     }
   </style>
@@ -121,15 +128,23 @@
   <!-- =====================================================================
        ROAMING ECOCAR CADILLAC LYRIQ MASCOT (TIRES GLUED TO SCREEN EDGES)
   ====================================================================== -->
-  <div id="roaming-car" class="roaming-car-wrapper group" style="top: 0px; left: 10vw; transform: rotate(0deg);" onclick="interactCarMascot()">
+  <div id="roaming-car" class="roaming-car-wrapper group" onclick="interactCarMascot()">
     <div class="relative w-full h-full">
       <!-- Interactive Speech / Tooltip Bubble -->
       <div id="roaming-car-bubble" class="absolute -top-12 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-xl bg-slate-900/95 dark:bg-white text-white dark:text-slate-900 text-xs font-mono font-bold whitespace-nowrap shadow-2xl opacity-0 pointer-events-none transition-all duration-300 group-hover:opacity-100 border border-gtgold-400/60 flex items-center gap-2">
         <span id="roaming-car-text">Too fast to catch it? ⚡</span>
       </div>
 
-      <!-- Exact EcoCAR Cadillac LYRIQ Cutout Image -->
-      <img src="ecocar-lyriq.png" alt="Georgia Tech EcoCAR Cadillac LYRIQ" class="w-full h-full object-contain pointer-events-none select-none" />
+      <!-- Car Body with Hollow Wheel Wells -->
+      <img src="ecocar-body.png" alt="Georgia Tech EcoCAR Cadillac LYRIQ" class="w-full h-full object-contain pointer-events-none select-none relative z-10" />
+
+      <!-- Front Rolling Wheel -->
+      <img src="ecocar-wheel.png" alt="Front Wheel" class="car-wheel-rolling absolute pointer-events-none select-none z-20"
+           style="left: 8.1%; bottom: 0; width: 17.5%; height: 48.8%;" />
+
+      <!-- Rear Rolling Wheel -->
+      <img src="ecocar-wheel.png" alt="Rear Wheel" class="car-wheel-rolling absolute pointer-events-none select-none z-20"
+           style="left: 71.2%; bottom: 0; width: 17.5%; height: 48.8%;" />
     </div>
   </div>
 
@@ -1589,58 +1604,85 @@
     ];
     let carQuoteIdx = 0;
 
-    // Clockwise waypoints circumnavigating all 4 edges with front bumper leading:
-    // Car naturally faces LEFT in original photo.
-    // 1. Top Edge: moving LEFT to RIGHT
-    //    Car facing right -> rotate(180deg) without flip (wheels on top edge: top: 0px)
-    // 2. Right Edge: moving TOP to BOTTOM
-    //    Car facing down -> rotate(90deg) (wheels on right edge: left: calc(100vw - 118px))
-    // 3. Bottom Edge: moving RIGHT to LEFT
-    //    Car facing left -> rotate(0deg) (wheels on bottom edge: top: calc(100vh - 62px))
-    // 4. Left Edge: moving BOTTOM to TOP
-    //    Car facing up -> rotate(-90deg) (wheels on left edge: left: -56px)
-    const CAR_WAYPOINTS = [
-      // 1. Top edge driving forward (left to right)
-      { top: "0px", left: "6vw", rotation: 180 },
-      { top: "0px", left: "38vw", rotation: 180 },
-      { top: "0px", left: "calc(100vw - 195px)", rotation: 180 },
-
-      // 2. Turning down right edge driving forward (top to bottom)
-      { top: "18vh", left: "calc(100vw - 118px)", rotation: 90 },
-      { top: "45vh", left: "calc(100vw - 118px)", rotation: 90 },
-      { top: "72vh", left: "calc(100vw - 118px)", rotation: 90 },
-
-      // 3. Turning bottom edge driving forward (right to left)
-      { top: "calc(100vh - 62px)", left: "calc(100vw - 195px)", rotation: 0 },
-      { top: "calc(100vh - 62px)", left: "42vw", rotation: 0 },
-      { top: "calc(100vh - 62px)", left: "6vw", rotation: 0 },
-
-      // 4. Turning up left edge driving forward (bottom to top)
-      { top: "70vh", left: "-56px", rotation: -90 },
-      { top: "42vh", left: "-56px", rotation: -90 },
-      { top: "16vh", left: "-56px", rotation: -90 }
+    // ============================================================================
+    // ROAMING ECOCAR CADILLAC LYRIQ MASCOT (CONTINUOUS ROLLING & CIRCUIT)
+    // ============================================================================
+    const CAR_QUOTES = [
+      "Too fast to catch it? ⚡",
+      "Too efficient to run out of energy 🌿"
     ];
+    let carQuoteIdx = 0;
 
-    let currentWaypointIdx = 0;
+    let carDistance = 0;
+    let carRunning = true;
+    const CAR_SPEED = 90; // pixels per second (smooth, relaxing crawl)
+
+    function updateCarFrame(dt) {
+      const car = document.getElementById("roaming-car");
+      if (!car || !carRunning) return;
+
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const cw = car.offsetWidth || 175;
+      const ch = car.offsetHeight || 62.5;
+
+      // The 4 perimeter sides:
+      // Side 1 (Top Edge): x goes from 0 to (vw - cw), y = 0, facing right (rotate -180deg)
+      // Side 2 (Right Edge): y goes from 0 to (vh - ch), x = (vw - ch), facing down (rotate -90deg)
+      // Side 3 (Bottom Edge): x goes from (vw - cw) down to 0, y = (vh - ch), facing left (rotate 0deg)
+      // Side 4 (Left Edge): y goes from (vh - ch) down to 0, x = 0, facing up (rotate 90deg)
+      const topLen = Math.max(100, vw - cw);
+      const rightLen = Math.max(100, vh - ch);
+      const bottomLen = topLen;
+      const leftLen = rightLen;
+      const totalPerimeter = topLen + rightLen + bottomLen + leftLen;
+
+      carDistance = (carDistance + CAR_SPEED * dt) % totalPerimeter;
+
+      let x = 0, y = 0, rot = 0;
+
+      if (carDistance < topLen) {
+        // 1. Driving along Top Edge (left to right, upside-down, tires on top border)
+        const progress = carDistance / topLen;
+        x = progress * topLen;
+        y = 0;
+        rot = 180;
+      } else if (carDistance < topLen + rightLen) {
+        // 2. Driving along Right Edge (top to bottom, tires on right border)
+        const progress = (carDistance - topLen) / rightLen;
+        x = vw - ch;
+        y = progress * rightLen;
+        rot = -90;
+      } else if (carDistance < topLen + rightLen + bottomLen) {
+        // 3. Driving along Bottom Edge (right to left, upright, tires on bottom border)
+        const progress = (carDistance - (topLen + rightLen)) / bottomLen;
+        x = (1 - progress) * bottomLen;
+        y = vh - ch;
+        rot = 0;
+      } else {
+        // 4. Driving along Left Edge (bottom to top, tires on left border)
+        const progress = (carDistance - (topLen + rightLen + bottomLen)) / leftLen;
+        x = 0;
+        y = (1 - progress) * leftLen;
+        rot = 90;
+      }
+
+      car.style.left = `${x}px`;
+      car.style.top = `${y}px`;
+      car.style.transform = `rotate(${rot}deg)`;
+    }
+
+    let lastTime = 0;
+    function carLoop(timestamp) {
+      if (!lastTime) lastTime = timestamp;
+      const dt = (timestamp - lastTime) / 1000;
+      lastTime = timestamp;
+      updateCarFrame(Math.min(dt, 0.1));
+      requestAnimationFrame(carLoop);
+    }
 
     function initRoamingCar() {
-      const car = document.getElementById("roaming-car");
-      if (!car) return;
-
-      // Position initially at bottom left
-      const initialWp = CAR_WAYPOINTS[0];
-      car.style.top = initialWp.top;
-      car.style.left = initialWp.left;
-      car.style.transform = `rotate(${initialWp.rotation}deg)`;
-
-      // Advance waypoint every 3 seconds around the screen
-      setInterval(() => {
-        currentWaypointIdx = (currentWaypointIdx + 1) % CAR_WAYPOINTS.length;
-        const wp = CAR_WAYPOINTS[currentWaypointIdx];
-        car.style.top = wp.top;
-        car.style.left = wp.left;
-        car.style.transform = `rotate(${wp.rotation}deg)`;
-      }, 3000);
+      requestAnimationFrame(carLoop);
     }
 
     function interactCarMascot() {
@@ -1652,13 +1694,6 @@
       textEl.textContent = CAR_QUOTES[carQuoteIdx];
       bubble.classList.remove("opacity-0");
       bubble.classList.add("opacity-100");
-
-      const car = document.getElementById("roaming-car");
-      car.style.transform += " scale(1.15)";
-      setTimeout(() => {
-        const wp = CAR_WAYPOINTS[currentWaypointIdx];
-        car.style.transform = `rotate(${wp.rotation}deg)`;
-      }, 350);
 
       setTimeout(() => {
         bubble.classList.remove("opacity-100");
