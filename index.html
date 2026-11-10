@@ -90,31 +90,28 @@
     .roaming-car-wrapper {
       position: fixed;
       z-index: 50;
-      width: 168px;
-      height: 60px;
+      width: 175px;
+      height: 62px;
       pointer-events: auto;
       cursor: pointer;
       user-select: none;
-      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.45));
       transition: left 1.8s cubic-bezier(0.25, 1, 0.5, 1),
                   top 1.8s cubic-bezier(0.25, 1, 0.5, 1),
                   transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .roaming-car-wrapper:hover {
-      filter: drop-shadow(0 0 14px rgba(216, 167, 56, 0.85)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0 0 16px rgba(216, 167, 56, 0.9)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+    }
+    .roaming-car-wrapper img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
     }
     @media (max-width: 640px) {
       .roaming-car-wrapper {
-        width: 120px;
-        height: 43px;
+        width: 125px;
+        height: 45px;
       }
-    }
-    @keyframes exhaustTrail {
-      0% { opacity: 0.85; transform: scale(0.6) translateX(0); }
-      100% { opacity: 0; transform: scale(1.6) translateX(-18px); }
-    }
-    .exhaust-particle {
-      animation: exhaustTrail 1.2s infinite ease-out;
     }
   </style>
 </head>
@@ -124,16 +121,12 @@
   <!-- =====================================================================
        ROAMING ECOCAR CADILLAC LYRIQ MASCOT (TIRES GLUED TO SCREEN EDGES)
   ====================================================================== -->
-  <div id="roaming-car" class="roaming-car-wrapper group" style="top: calc(100vh - 62px); left: 10vw; transform: rotate(0deg);" onclick="interactCarMascot()">
+  <div id="roaming-car" class="roaming-car-wrapper group" style="top: 0px; left: 10vw; transform: rotate(0deg);" onclick="interactCarMascot()">
     <div class="relative w-full h-full">
       <!-- Interactive Speech / Tooltip Bubble -->
       <div id="roaming-car-bubble" class="absolute -top-12 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-xl bg-slate-900/95 dark:bg-white text-white dark:text-slate-900 text-xs font-mono font-bold whitespace-nowrap shadow-2xl opacity-0 pointer-events-none transition-all duration-300 group-hover:opacity-100 border border-gtgold-400/60 flex items-center gap-2">
         <span id="roaming-car-text">Too fast to catch it? ⚡</span>
       </div>
-
-      <!-- Energy / Speed Particles -->
-      <span class="exhaust-particle absolute top-8 -left-2 text-[11px] text-gtgold-400 select-none pointer-events-none">⚡</span>
-      <span class="exhaust-particle absolute top-9 -left-5 text-[10px] text-emerald-400 select-none pointer-events-none" style="animation-delay: 0.5s;">🌿</span>
 
       <!-- Exact EcoCAR Cadillac LYRIQ Cutout Image -->
       <img src="ecocar-lyriq.png" alt="Georgia Tech EcoCAR Cadillac LYRIQ" class="w-full h-full object-contain pointer-events-none select-none" />
@@ -1596,29 +1589,36 @@
     ];
     let carQuoteIdx = 0;
 
-    // Waypoints circumnavigating all 4 edges of the viewport
-    // The tires are aligned flush against each edge of the screen:
-    // - Bottom: car upright (rotate 0deg), tires touching bottom edge
-    // - Right: car driving up (rotate -90deg), tires touching right edge
-    // - Top: car driving left upside-down (rotate 180deg, NO vertical flip), tires touching top edge
-    // - Left: car driving down (rotate 90deg), tires touching left edge
+    // Clockwise waypoints circumnavigating all 4 edges with front bumper leading:
+    // Car naturally faces LEFT in original photo.
+    // 1. Top Edge: moving LEFT to RIGHT
+    //    Car facing right -> rotate(180deg) without flip (wheels on top edge: top: 0px)
+    // 2. Right Edge: moving TOP to BOTTOM
+    //    Car facing down -> rotate(90deg) (wheels on right edge: left: calc(100vw - 118px))
+    // 3. Bottom Edge: moving RIGHT to LEFT
+    //    Car facing left -> rotate(0deg) (wheels on bottom edge: top: calc(100vh - 62px))
+    // 4. Left Edge: moving BOTTOM to TOP
+    //    Car facing up -> rotate(-90deg) (wheels on left edge: left: -56px)
     const CAR_WAYPOINTS = [
-      // 1. Bottom edge driving right
-      { top: "calc(100vh - 60px)", left: "8vw", rotation: 0 },
-      { top: "calc(100vh - 60px)", left: "42vw", rotation: 0 },
-      { top: "calc(100vh - 60px)", left: "calc(100vw - 190px)", rotation: 0 },
-      // 2. Turning up the right edge (tires against right screen boundary)
-      { top: "72vh", left: "calc(100vw - 114px)", rotation: -90 },
-      { top: "44vh", left: "calc(100vw - 114px)", rotation: -90 },
-      { top: "16vh", left: "calc(100vw - 114px)", rotation: -90 },
-      // 3. Turning left along the top edge (upside down, tires against top boundary)
-      { top: "0px", left: "calc(100vw - 190px)", rotation: 180 },
-      { top: "0px", left: "45vw", rotation: 180 },
-      { top: "0px", left: "8vw", rotation: 180 },
-      // 4. Turning down the left edge (tires against left boundary)
-      { top: "20vh", left: "-54px", rotation: 90 },
-      { top: "50vh", left: "-54px", rotation: 90 },
-      { top: "75vh", left: "-54px", rotation: 90 }
+      // 1. Top edge driving forward (left to right)
+      { top: "0px", left: "6vw", rotation: 180 },
+      { top: "0px", left: "38vw", rotation: 180 },
+      { top: "0px", left: "calc(100vw - 195px)", rotation: 180 },
+
+      // 2. Turning down right edge driving forward (top to bottom)
+      { top: "18vh", left: "calc(100vw - 118px)", rotation: 90 },
+      { top: "45vh", left: "calc(100vw - 118px)", rotation: 90 },
+      { top: "72vh", left: "calc(100vw - 118px)", rotation: 90 },
+
+      // 3. Turning bottom edge driving forward (right to left)
+      { top: "calc(100vh - 62px)", left: "calc(100vw - 195px)", rotation: 0 },
+      { top: "calc(100vh - 62px)", left: "42vw", rotation: 0 },
+      { top: "calc(100vh - 62px)", left: "6vw", rotation: 0 },
+
+      // 4. Turning up left edge driving forward (bottom to top)
+      { top: "70vh", left: "-56px", rotation: -90 },
+      { top: "42vh", left: "-56px", rotation: -90 },
+      { top: "16vh", left: "-56px", rotation: -90 }
     ];
 
     let currentWaypointIdx = 0;
