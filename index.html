@@ -1607,14 +1607,18 @@
     let currentHoverMultiplier = 1.0; // 1.0 = full cruising speed, 0.0 = fully stopped
 
     function getTrackGeometry(vw, vh, cw, ch) {
+      // Respect the sticky navigation bar height so the car rides underneath it
+      const header = document.querySelector('header');
+      const topY = header ? header.offsetHeight : 80;
+
       // Wide, sweeping corner curve radius for natural turning
-      const r = 120;
+      const r = Math.min(120, Math.max(40, Math.floor(((vh - topY) - ch) / 3)));
 
       // 4 straight path lengths:
       const L_bottom = Math.max(10, vw - cw - 2 * r);
-      const L_left   = Math.max(10, vh - ch - 2 * r);
+      const L_left   = Math.max(10, (vh - topY) - ch - 2 * r);
       const L_top    = Math.max(10, vw - cw - 2 * r);
-      const L_right  = Math.max(10, vh - ch - 2 * r);
+      const L_right  = Math.max(10, (vh - topY) - ch - 2 * r);
 
       // Arc length of a 90-degree corner:
       const cornerLen = (Math.PI / 2) * r; // ~188.5px per corner
@@ -1622,7 +1626,7 @@
       const totalPerimeter = L_bottom + cornerLen + L_left + cornerLen + L_top + cornerLen + L_right + cornerLen;
 
       return {
-        vw, vh, cw, ch, r,
+        vw, vh, cw, ch, r, topY,
         L_bottom, L_left, L_top, L_right,
         cornerLen,
         totalPerimeter
@@ -1732,12 +1736,13 @@
         rot = 90 + smoothT * 90;
         const angle = t * (Math.PI / 2);
         x = ((ch - cw) / 2) * (1 - smoothT) + (geo.r * (1 - Math.cos(angle)));
-        y = geo.r * (1 - Math.sin(angle));
+        y = geo.topY + geo.r * (1 - Math.sin(angle));
       } else if (d < s3) {
         // 3. Top straight (left to right, rot = 180deg)
+        // Riding right beneath navigation bar: wheels stay flush to bottom line of header
         const progress = (d - c2) / geo.L_top;
         x = geo.r + progress * geo.L_top;
-        y = 0;
+        y = geo.topY;
         rot = 180;
       } else if (d < c3) {
         // Corner 3: Top-Right turning 180 -> 270deg
@@ -1747,12 +1752,12 @@
         const angle = t * (Math.PI / 2);
         const rightTargetX = vw - (cw + ch) / 2;
         x = (vw - cw - geo.r) + (geo.r * Math.sin(angle)) + (smoothT * (rightTargetX - (vw - cw)));
-        y = geo.r * (1 - Math.cos(angle));
+        y = geo.topY + geo.r * (1 - Math.cos(angle));
       } else if (d < s4) {
         // 4. Right straight (top to bottom, rot = 270deg)
         const progress = (d - c3) / geo.L_right;
         x = vw - (cw + ch) / 2;
-        y = geo.r + progress * geo.L_right;
+        y = (geo.topY + geo.r) + progress * geo.L_right;
         rot = 270;
       } else {
         // Corner 4: Bottom-Right turning 270 -> 360/0deg
