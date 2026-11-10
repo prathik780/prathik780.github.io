@@ -64,13 +64,16 @@
 
   <style>
     /* ==========================================================================
-       AUTHENTIC FOLDED VINTAGE PAPER TEXTURE
+       AUTHENTIC FOLDED VINTAGE PAPER TEXTURE (SOFTENED FOR MAXIMUM LEGIBILITY)
        ========================================================================== */
     body {
-      background-color: #dfcfab;
-      color: #2b3240;
-      /* Photorealistic folded vintage aged parchment with real creases & patina */
-      background-image: url('vintage-paper-bg.jpg');
+      background-color: #f7f3e8;
+      color: #0f172a;
+      /* Softened antique folded paper: authentic creases & fold lines are preserved,
+         while a bright warm vellum wash ensures maximum reading contrast */
+      background-image: 
+        linear-gradient(rgba(253, 249, 239, 0.84), rgba(248, 243, 231, 0.88)),
+        url('vintage-paper-bg.jpg');
       background-attachment: fixed;
       background-position: center center;
       background-repeat: no-repeat;
@@ -80,11 +83,11 @@
 
     .dark body,
     html.dark body {
-      background-color: #070b14;
-      color: #f1f5f9;
+      background-color: #050811;
+      color: #f8fafc;
       /* Dark Archival Blueprint / Midnight Leather Folded Parchment */
       background-image: 
-        linear-gradient(rgba(7, 11, 20, 0.88), rgba(4, 7, 15, 0.94)),
+        linear-gradient(rgba(8, 13, 24, 0.92), rgba(5, 8, 17, 0.96)),
         url('vintage-paper-bg.jpg');
       background-attachment: fixed;
       background-position: center center;
@@ -99,11 +102,11 @@
       inset: 0;
       pointer-events: none;
       z-index: 35;
-      box-shadow: inset 0 0 90px rgba(140, 105, 55, 0.18), inset 0 0 180px rgba(110, 80, 40, 0.12);
+      box-shadow: inset 0 0 60px rgba(140, 105, 55, 0.08);
     }
     .dark body::before,
     html.dark body::before {
-      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5), inset 0 0 200px rgba(0, 0, 0, 0.4);
+      box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
     }
 
     /* Custom Scrollbar */
@@ -286,43 +289,43 @@
 
           <!-- Name & Headline -->
           <div class="space-y-3">
-            <h1 id="hero-name" class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            <h1 id="hero-name" class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-[1.1]">
               Prathik Reddy Gunreddy
             </h1>
-            <p id="hero-subtitle" class="font-display text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-200 leading-snug">
-              Ph.D. Candidate in Mechanical Engineering at <span class="text-gtgold-600 dark:text-gtgold-400">Georgia Tech</span> | Vibro-Acoustic Metamaterials, Structural Dynamics & EV Systems Architecture
+            <p id="hero-subtitle" class="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 leading-snug">
+              Ph.D. Candidate in Mechanical Engineering at <span class="text-gtgold-700 dark:text-gtgold-400 font-extrabold">Georgia Tech</span> | Vibro-Acoustic Metamaterials, Structural Dynamics & EV Systems Architecture
             </p>
           </div>
 
           <!-- Bio Summary -->
-          <p id="hero-bio" class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
+          <p id="hero-bio" class="text-base sm:text-lg text-slate-800 dark:text-slate-200 font-medium leading-relaxed max-w-2xl">
             Bridging fundamental wave physics, high-fidelity finite element modeling, and complex vehicle systems integration. Experienced in designing hybrid vibro-acoustic metamaterials for simultaneous sound and vibration attenuation and leading multi-disciplinary automotive engineering teams from concept to 1st-place national competition execution.
           </p>
 
           <!-- Key Affiliations Strip -->
-          <div class="flex flex-wrap items-center gap-y-2 gap-x-6 pt-1 text-xs font-mono text-slate-500 dark:text-slate-400">
+          <div class="flex flex-wrap items-center gap-y-2 gap-x-6 pt-1 text-xs font-mono font-semibold text-slate-800 dark:text-slate-300">
             <div class="flex items-center gap-2">
-              <i class="fa-solid fa-building-columns text-gtgold-500"></i>
+              <i class="fa-solid fa-building-columns text-gtgold-600 dark:text-gtgold-400"></i>
               <span>Georgia Institute of Technology (Ph.D. '27)</span>
             </div>
             <div class="flex items-center gap-2">
-              <i class="fa-solid fa-graduation-cap text-gtgold-500"></i>
+              <i class="fa-solid fa-graduation-cap text-gtgold-600 dark:text-gtgold-400"></i>
               <span>IIT Bombay (B.Tech ME)</span>
             </div>
             <div class="flex items-center gap-2">
-              <i class="fa-solid fa-location-dot text-gtgold-500"></i>
+              <i class="fa-solid fa-location-dot text-gtgold-600 dark:text-gtgold-400"></i>
               <span>Atlanta, GA</span>
             </div>
           </div>
 
           <!-- Primary CTA & Academic/Social Bar -->
           <div class="pt-2 flex flex-wrap items-center gap-3.5">
-            <a href="#projects" class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl font-display font-semibold text-sm bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 hover:bg-slate-800 dark:hover:bg-gtgold-300 shadow-sm transition-all">
+            <a href="#projects" class="inline-flex items-center gap-2.5 px-5 py-3 rounded-xl font-display font-semibold text-sm bg-slate-950 text-white dark:bg-gtgold-400 dark:text-navy-950 hover:bg-slate-800 dark:hover:bg-gtgold-300 shadow-sm transition-all">
               <span>Projects</span>
               <i class="fa-solid fa-arrow-right text-xs"></i>
             </a>
-            <a href="#publications" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-display font-semibold text-sm bg-white dark:bg-navy-900 text-slate-800 dark:text-slate-100 border border-slate-300 dark:border-slate-700 hover:border-gtgold-500 dark:hover:border-gtgold-400 transition-all">
-              <i class="fa-solid fa-scroll text-gtgold-500 text-xs"></i>
+            <a href="#publications" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-display font-semibold text-sm bg-[#fffefb] dark:bg-navy-900 text-slate-900 dark:text-slate-100 border border-[#d6c7ab] dark:border-slate-700 hover:border-gtgold-600 dark:hover:border-gtgold-400 shadow-sm transition-all">
+              <i class="fa-solid fa-scroll text-gtgold-600 dark:text-gtgold-400 text-xs"></i>
               <span>Publications & Patents</span>
             </a>
 
@@ -413,21 +416,21 @@
       <!-- Section Header + "+ Add / Edit Project Preview" Button -->
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
-            <span class="w-6 h-[1px] bg-gtgold-500"></span>
+          <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-700 dark:text-gtgold-400 mb-2 font-bold">
+            <span class="w-6 h-[1.5px] bg-gtgold-600"></span>
             <span>R&D Case Studies & Systems Engineering</span>
           </div>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
             Featured Engineering & Research Projects
           </h2>
-          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+          <p class="mt-2 text-sm sm:text-base text-slate-800 dark:text-slate-200 font-medium max-w-2xl leading-relaxed">
             Select any project card below to inspect the full technical case study, mathematical methodology, experimental validation setup, and key engineering outcomes.
           </p>
         </div>
       </div>
 
       <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center gap-2 mb-8 pb-2 border-b border-[#e2d7c0] dark:border-slate-800" id="project-filter-tabs">
+      <div class="flex flex-wrap items-center gap-2 mb-8 pb-2 border-b border-[#d8cbb1] dark:border-slate-800" id="project-filter-tabs">
         <!-- Rendered dynamically -->
       </div>
 
@@ -441,28 +444,28 @@
   <!-- =====================================================================
        5. PUBLICATIONS & INTELLECTUAL PROPERTY SECTION
   ====================================================================== -->
-  <section id="publications" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
+  <section id="publications" class="py-16 lg:py-24 border-t border-[#d8cbb1] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
-            <span class="w-6 h-[1px] bg-gtgold-500"></span>
+          <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-700 dark:text-gtgold-400 mb-2 font-bold">
+            <span class="w-6 h-[1.5px] bg-gtgold-600"></span>
             <span>Patents, Peer-Reviewed Journals & Preprints</span>
           </div>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+          <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
             Publications & Intellectual Property
           </h2>
-          <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+          <p class="mt-2 text-sm sm:text-base text-slate-800 dark:text-slate-200 font-medium max-w-2xl leading-relaxed">
             Research output spanning hybrid airborne/structure-borne vibro-acoustic metamaterials, non-homogeneous scattering matrix characterization, and elastic wave attenuation.
           </p>
         </div>
 
         <!-- Filter Pills for IP / Publications -->
         <div class="flex flex-wrap gap-2" id="pub-filter-buttons">
-          <button onclick="filterPublications('All')" data-pub-filter="All" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 transition-colors">All Output</button>
-          <button onclick="filterPublications('Patent')" data-pub-filter="Patent" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-900 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">Patents</button>
-          <button onclick="filterPublications('Journal')" data-pub-filter="Journal" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-900 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">Journal Articles</button>
-          <button onclick="filterPublications('Manuscript')" data-pub-filter="Manuscript" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-900 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">Manuscripts</button>
+          <button onclick="filterPublications('All')" data-pub-filter="All" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-slate-950 text-white dark:bg-gtgold-400 dark:text-navy-950 transition-colors shadow-sm">All Output</button>
+          <button onclick="filterPublications('Patent')" data-pub-filter="Patent" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#fffefb] dark:bg-navy-900 text-slate-900 dark:text-slate-200 border border-[#d8cbb1] dark:border-slate-800 hover:border-gtgold-500 transition-colors shadow-sm">Patents</button>
+          <button onclick="filterPublications('Journal')" data-pub-filter="Journal" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#fffefb] dark:bg-navy-900 text-slate-900 dark:text-slate-200 border border-[#d8cbb1] dark:border-slate-800 hover:border-gtgold-500 transition-colors shadow-sm">Journal Articles</button>
+          <button onclick="filterPublications('Manuscript')" data-pub-filter="Manuscript" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-semibold bg-[#fffefb] dark:bg-navy-900 text-slate-900 dark:text-slate-200 border border-[#d8cbb1] dark:border-slate-800 hover:border-gtgold-500 transition-colors shadow-sm">Manuscripts</button>
         </div>
       </div>
 
@@ -476,17 +479,17 @@
   <!-- =====================================================================
        6. TECHNICAL ARSENAL / SKILLS MATRIX
   ====================================================================== -->
-  <section id="skills" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
+  <section id="skills" class="py-16 lg:py-24 border-t border-[#d8cbb1] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
-        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
-          <span class="w-6 h-[1px] bg-gtgold-500"></span>
+        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-700 dark:text-gtgold-400 mb-2 font-bold">
+          <span class="w-6 h-[1.5px] bg-gtgold-600"></span>
           <span>Core Competencies & Toolchains</span>
         </div>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
           Technical Arsenal & Domain Expertise
         </h2>
-        <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+        <p class="mt-2 text-sm sm:text-base text-slate-800 dark:text-slate-200 font-medium max-w-2xl leading-relaxed">
           Full-stack engineering capabilities across multiphysics finite element simulation, experimental acoustic impedance testing, vehicle architecture packaging, and physics-informed machine learning.
         </p>
       </div>
@@ -500,14 +503,14 @@
   <!-- =====================================================================
        7. EXPERIENCE & EDUCATION TIMELINE
   ====================================================================== -->
-  <section id="experience" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
+  <section id="experience" class="py-16 lg:py-24 border-t border-[#d8cbb1] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
-        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
-          <span class="w-6 h-[1px] bg-gtgold-500"></span>
+        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-700 dark:text-gtgold-400 mb-2 font-bold">
+          <span class="w-6 h-[1.5px] bg-gtgold-600"></span>
           <span>Academic & Leadership Trajectory</span>
         </div>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
           Experience & Education
         </h2>
       </div>
@@ -521,54 +524,54 @@
   <!-- =====================================================================
        8. BEYOND THE LAB (PERSONAL & FUN)
   ====================================================================== -->
-  <section id="beyond" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
+  <section id="beyond" class="py-16 lg:py-24 border-t border-[#d8cbb1] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
-        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
-          <span class="w-6 h-[1px] bg-gtgold-500"></span>
+        <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-700 dark:text-gtgold-400 mb-2 font-bold">
+          <span class="w-6 h-[1.5px] bg-gtgold-600"></span>
           <span>When I'm Not in the Anchoic Chamber</span>
         </div>
-        <h2 class="font-display text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">
+        <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-950 dark:text-white tracking-tight">
           Beyond the Lab & Simulation Loops
         </h2>
-        <p class="mt-2 text-sm sm:text-base text-slate-600 dark:text-slate-400 max-w-2xl">
+        <p class="mt-2 text-sm sm:text-base text-slate-800 dark:text-slate-200 font-medium max-w-2xl leading-relaxed">
           Engineering is what I do, but here's a quick peek into what keeps me caffeinated, motivated, and human outside FEA mesh convergence.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Card 1 -->
-        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb] dark:bg-navy-950 border border-[#d8cbb1] dark:border-slate-800 space-y-3 card-lift shadow-md">
           <div class="text-3xl">☕</div>
-          <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Coffee & Cadence</h3>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <h3 class="font-display font-bold text-base text-slate-950 dark:text-white">Coffee & Cadence</h3>
+          <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-medium leading-relaxed">
             Fueled by pour-overs and espresso. If COMSOL or MATLAB isn't converging, a fresh cup of coffee is the first troubleshooting step.
           </p>
         </div>
 
         <!-- Card 2 -->
-        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb] dark:bg-navy-950 border border-[#d8cbb1] dark:border-slate-800 space-y-3 card-lift shadow-md">
           <div class="text-3xl">🏎️</div>
-          <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">EVs & Motorsport</h3>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <h3 class="font-display font-bold text-base text-slate-950 dark:text-white">EVs & Motorsport</h3>
+          <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-medium leading-relaxed">
             Spent 4 years converting a Cadillac LYRIQ into a national champion AWD electric machine. Always tracking electric powertrain dynamics and automotive tech.
           </p>
         </div>
 
         <!-- Card 3 -->
-        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb] dark:bg-navy-950 border border-[#d8cbb1] dark:border-slate-800 space-y-3 card-lift shadow-md">
           <div class="text-3xl">🍊</div>
-          <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Capybara Chill Mindset</h3>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <h3 class="font-display font-bold text-base text-slate-950 dark:text-white">Capybara Chill Mindset</h3>
+          <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-medium leading-relaxed">
             Believer in maintaining stoic calm under pressure—whether defending a research proposal or tuning 4-microphone transfer function hardware.
           </p>
         </div>
 
         <!-- Card 4 -->
-        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb] dark:bg-navy-950 border border-[#d8cbb1] dark:border-slate-800 space-y-3 card-lift shadow-md">
           <div class="text-3xl">🏸</div>
-          <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Badminton & Travel</h3>
-          <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+          <h3 class="font-display font-bold text-base text-slate-950 dark:text-white">Badminton & Travel</h3>
+          <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-300 font-medium leading-relaxed">
             Always up for a fast rally on the court, exploring new cities, or wandering through audio gear stores to compare acoustic profiles.
           </p>
         </div>
@@ -1256,16 +1259,16 @@
     function renderMetricsBanner() {
       const container = document.getElementById("impact-metrics-grid");
       container.innerHTML = PORTFOLIO_DATA.metrics.map(m => `
-        <div class="p-5 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-900/85 border border-[#e2d7be] dark:border-slate-800 shadow-sm flex flex-col justify-between gap-3 card-lift backdrop-blur-sm">
+        <div class="p-5 rounded-2xl bg-[#fffefb] dark:bg-navy-900/90 border border-[#d8cbb1] dark:border-slate-800 shadow-md flex flex-col justify-between gap-3 card-lift">
           <div class="flex items-center justify-between">
-            <span class="font-mono text-xs uppercase tracking-wider text-gtgold-600 dark:text-gtgold-400 font-semibold">${m.title}</span>
-            <span class="w-8 h-8 rounded-lg bg-gtgold-50 dark:bg-gtgold-400/10 border border-gtgold-200 dark:border-gtgold-400/20 flex items-center justify-center text-gtgold-600 dark:text-gtgold-400">
+            <span class="font-mono text-xs uppercase tracking-wider text-gtgold-700 dark:text-gtgold-400 font-bold">${m.title}</span>
+            <span class="w-8 h-8 rounded-lg bg-gtgold-50 dark:bg-gtgold-400/10 border border-gtgold-300 dark:border-gtgold-400/20 flex items-center justify-center text-gtgold-700 dark:text-gtgold-400">
               <i class="${m.icon} text-xs"></i>
             </span>
           </div>
           <div>
-            <div class="font-display text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">${m.metric}</div>
-            <p class="mt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed">${m.detail}</p>
+            <div class="font-display text-2xl font-extrabold text-slate-950 dark:text-white tracking-tight">${m.metric}</div>
+            <p class="mt-1 text-xs text-slate-800 dark:text-slate-200 font-medium leading-relaxed">${m.detail}</p>
           </div>
         </div>
       `).join("");
@@ -1287,13 +1290,13 @@
 
         return `
           <button onclick="setProjectCategory('${cat}')"
-                  class="px-4 py-2 rounded-xl font-mono text-xs font-medium transition-all flex items-center gap-2 ${
+                  class="px-4 py-2 rounded-xl font-mono text-xs font-semibold transition-all flex items-center gap-2 ${
                     isActive
-                      ? 'bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 shadow-sm font-semibold'
-                      : 'bg-[#f5ecda]/70 dark:bg-navy-950 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white border border-[#e2d7be]/80 hover:border-[#c5b497] dark:hover:border-slate-700'
+                      ? 'bg-slate-950 text-white dark:bg-gtgold-400 dark:text-navy-950 shadow-md font-bold'
+                      : 'bg-[#fffefb] dark:bg-navy-950 text-slate-800 dark:text-slate-300 hover:text-black dark:hover:text-white border border-[#d8cbb1] hover:border-gtgold-500 dark:hover:border-slate-700 shadow-sm'
                   }">
             <span>${cat}</span>
-            <span class="px-1.5 py-0.2 rounded text-[10px] ${isActive ? 'bg-white/20 dark:bg-navy-950/20' : 'bg-slate-200 dark:bg-slate-800'}">${count}</span>
+            <span class="px-1.5 py-0.2 rounded text-[10px] ${isActive ? 'bg-white/20 dark:bg-navy-950/20' : 'bg-[#ede2cb] dark:bg-slate-800 text-slate-900 dark:text-slate-200'}">${count}</span>
           </button>
         `;
       }).join("");
@@ -1313,13 +1316,13 @@
 
       container.innerHTML = filtered.map(proj => `
         <article onclick="openCaseStudyModal('${proj.id}')"
-                 class="group cursor-pointer rounded-2xl bg-[#fffefb]/90 dark:bg-navy-950/90 border border-[#e2d7be] dark:border-slate-800/90 hover:border-gtgold-500 dark:hover:border-gtgold-400/70 overflow-hidden flex flex-col justify-between card-lift shadow-sm backdrop-blur-sm">
+                 class="group cursor-pointer rounded-2xl bg-[#fffefb] dark:bg-navy-950 border border-[#d8cbb1] dark:border-slate-800/90 hover:border-gtgold-600 dark:hover:border-gtgold-400/70 overflow-hidden flex flex-col justify-between card-lift shadow-md">
           <div>
             <!-- Top Technical Diagram / Visual Header -->
-            <div class="relative border-b border-slate-200 dark:border-slate-800/80 bg-navy-950 overflow-hidden">
+            <div class="relative border-b border-[#d8cbb1] dark:border-slate-800/80 bg-navy-950 overflow-hidden">
               ${proj.customImage ? `<img src="${proj.customImage}" alt="${proj.title}" class="w-full h-44 object-cover" />` : getProjectDiagramSVG(proj.diagramType)}
               <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-                <span class="px-2.5 py-0.5 rounded-md font-mono text-[10px] font-medium bg-navy-950/90 text-gtgold-400 border border-gtgold-400/30 backdrop-blur-sm">
+                <span class="px-2.5 py-0.5 rounded-md font-mono text-[10px] font-bold bg-navy-950/90 text-gtgold-400 border border-gtgold-400/30 backdrop-blur-sm">
                   ${proj.badge}
                 </span>
               </div>
@@ -1327,13 +1330,13 @@
 
             <!-- Card Body -->
             <div class="p-6 space-y-3">
-              <div class="font-mono text-[11px] text-gtgold-600 dark:text-gtgold-400 uppercase tracking-wider">
+              <div class="font-mono text-[11px] text-gtgold-700 dark:text-gtgold-400 uppercase tracking-wider font-bold">
                 ${proj.category}
               </div>
-              <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white group-hover:text-gtgold-600 dark:group-hover:text-gtgold-400 transition-colors leading-snug">
+              <h3 class="font-display text-lg font-bold text-slate-950 dark:text-white group-hover:text-gtgold-700 dark:group-hover:text-gtgold-400 transition-colors leading-snug">
                 ${proj.title}
               </h3>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+              <p class="text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-medium leading-relaxed line-clamp-3">
                 ${proj.summary}
               </p>
             </div>
@@ -1343,14 +1346,14 @@
           <div class="px-6 pb-6 pt-2 space-y-4">
             <div class="flex flex-wrap gap-1.5">
               ${proj.tags.map(t => `
-                <span class="px-2 py-0.5 rounded bg-[#f3ead8] dark:bg-slate-800/80 text-slate-800 dark:text-slate-300 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-[#f0e7d5] dark:bg-slate-800 text-slate-900 dark:text-slate-200 font-mono text-[11px] font-semibold">
                   ${t}
                 </span>
               `).join("")}
             </div>
-            <div class="pt-3 border-t border-[#e2d7be]/80 dark:border-slate-800/80 flex items-center justify-between text-xs font-display font-semibold text-slate-800 dark:text-gtgold-400">
+            <div class="pt-3 border-t border-[#d8cbb1] dark:border-slate-800/80 flex items-center justify-between text-xs font-display font-bold text-slate-950 dark:text-gtgold-400">
               <span>Inspect Engineering Case Study</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-[11px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[11px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-gtgold-600 dark:text-gtgold-400"></i>
             </div>
           </div>
         </article>
@@ -1445,34 +1448,34 @@
           : "bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/30";
 
         return `
-          <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6 backdrop-blur-sm">
+          <div class="p-6 rounded-2xl bg-[#fffefb] dark:bg-navy-900 border border-[#d8cbb1] dark:border-slate-800 shadow-md flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="space-y-2.5 max-w-4xl">
               <div class="flex flex-wrap items-center gap-2.5">
-                <span class="font-mono text-xs text-slate-400">[0${idx + 1}]</span>
-                <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-medium border ${badgeColors}">
+                <span class="font-mono text-xs text-slate-600 dark:text-slate-400 font-bold">[0${idx + 1}]</span>
+                <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-bold border ${badgeColors}">
                   ${pub.badge}
                 </span>
-                <span class="font-mono text-xs text-slate-500 dark:text-slate-400">${pub.year}</span>
+                <span class="font-mono text-xs text-slate-700 dark:text-slate-400 font-semibold">${pub.year}</span>
               </div>
-              <h3 class="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-snug">
+              <h3 class="font-display text-lg sm:text-xl font-bold text-slate-950 dark:text-white leading-snug">
                 ${pub.title}
               </h3>
-              <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-medium">
-                ${pub.authors} — <em class="text-slate-800 dark:text-gtgold-300 not-italic font-mono text-xs">${pub.venue}</em>
+              <p class="text-xs sm:text-sm text-slate-900 dark:text-slate-200 font-semibold">
+                ${pub.authors} — <em class="text-gtgold-700 dark:text-gtgold-300 not-italic font-mono text-xs font-bold">${pub.venue}</em>
               </p>
-              <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed pt-1">
+              <p class="text-xs text-slate-800 dark:text-slate-300 leading-relaxed font-medium pt-1">
                 ${pub.abstract}
               </p>
             </div>
 
             <div class="flex flex-wrap lg:flex-col items-stretch gap-2 shrink-0">
               <button onclick="openBibtexModal('${pub.id}')"
-                      class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-[#f5ecda] dark:bg-navy-950 text-slate-800 dark:text-gtgold-400 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">
+                      class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold bg-[#f5ecda] dark:bg-navy-950 text-slate-950 dark:text-gtgold-400 border border-[#d8cbb1] dark:border-slate-800 hover:border-gtgold-600 transition-colors shadow-sm">
                 <i class="fa-solid fa-quote-right text-[10px]"></i>
                 <span>Cite (BibTeX)</span>
               </button>
               <a href="${pub.doiUrl}"
-                 class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-950 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-slate-400 transition-colors">
+                 class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-bold bg-[#fffefb] dark:bg-navy-950 text-slate-950 dark:text-slate-200 border border-[#d8cbb1] dark:border-slate-800 hover:border-gtgold-600 transition-colors shadow-sm">
                 <i class="fa-solid fa-file-lines text-[10px]"></i>
                 <span>Preprint / Request PDF</span>
               </a>
@@ -1488,25 +1491,25 @@
     function renderSkillsMatrix() {
       const container = document.getElementById("skills-grid");
       container.innerHTML = PORTFOLIO_DATA.skills.map(group => `
-        <div class="p-6 sm:p-7 rounded-2xl bg-[#fffefb]/80 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-5 backdrop-blur-sm">
+        <div class="p-6 sm:p-7 rounded-2xl bg-[#fffefb] dark:bg-navy-950 border border-[#d8cbb1] dark:border-slate-800 space-y-5 shadow-md">
           <div class="flex items-start justify-between gap-4">
             <div>
-              <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white">${group.domain}</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">${group.subtitle}</p>
+              <h3 class="font-display text-lg font-bold text-slate-950 dark:text-white">${group.domain}</h3>
+              <p class="text-xs text-slate-700 dark:text-slate-300 font-mono font-medium mt-0.5">${group.subtitle}</p>
             </div>
-            <div class="w-10 h-10 rounded-xl bg-gtgold-400/15 border border-gtgold-400/30 flex items-center justify-center text-gtgold-600 dark:text-gtgold-400 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-gtgold-400/15 border border-gtgold-400/30 flex items-center justify-center text-gtgold-700 dark:text-gtgold-400 shrink-0">
               <i class="${group.icon}"></i>
             </div>
           </div>
 
           <div class="space-y-3">
             ${group.items.map(skill => `
-              <div class="p-3 rounded-xl bg-[#fbf6ea] dark:bg-navy-900 border border-[#e4dbc8] dark:border-slate-800/80 flex items-center justify-between gap-3">
-                <span class="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">${skill.name}</span>
-                <span class="shrink-0 px-2 py-0.5 rounded font-mono text-[10px] font-semibold ${
+              <div class="p-3 rounded-xl bg-[#fbf6ea] dark:bg-navy-900 border border-[#d8cbb1]/80 dark:border-slate-800/80 flex items-center justify-between gap-3">
+                <span class="text-xs sm:text-sm font-semibold text-slate-900 dark:text-slate-100">${skill.name}</span>
+                <span class="shrink-0 px-2 py-0.5 rounded font-mono text-[10px] font-bold ${
                   skill.level === 'Expert'
-                    ? 'bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30'
-                    : 'bg-[#ede3cf] dark:bg-slate-800 text-slate-700 dark:text-slate-400'
+                    ? 'bg-gtgold-400/20 text-gtgold-800 dark:text-gtgold-300 border border-gtgold-400/40'
+                    : 'bg-[#ede2cb] dark:bg-slate-800 text-slate-900 dark:text-slate-300'
                 }">
                   ${skill.level}
                 </span>
@@ -1524,29 +1527,29 @@
           <!-- Timeline Node Dot -->
           <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-[#f7f2e7] dark:bg-navy-950 border-2 border-gtgold-500 group-hover:scale-125 transition-transform"></span>
 
-          <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-sm space-y-3 backdrop-blur-sm">
+          <div class="p-6 rounded-2xl bg-[#fffefb] dark:bg-navy-900 border border-[#d8cbb1] dark:border-slate-800 shadow-md space-y-3">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div class="flex items-center gap-2.5">
-                <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-medium bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30">
+                <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-bold bg-gtgold-400/15 text-gtgold-800 dark:text-gtgold-300 border border-gtgold-400/30">
                   ${item.badge}
                 </span>
-                <span class="font-mono text-xs text-slate-500 dark:text-slate-400">${item.period}</span>
+                <span class="font-mono text-xs text-slate-700 dark:text-slate-400 font-semibold">${item.period}</span>
               </div>
-              <span class="font-mono text-xs text-slate-500 dark:text-slate-400">
-                <i class="fa-solid fa-location-dot text-gtgold-500 mr-1"></i>${item.location}
+              <span class="font-mono text-xs text-slate-700 dark:text-slate-400 font-semibold">
+                <i class="fa-solid fa-location-dot text-gtgold-600 mr-1"></i>${item.location}
               </span>
             </div>
 
             <div>
-              <h3 class="font-display text-lg sm:text-xl font-bold text-slate-900 dark:text-white">${item.role}</h3>
-              <div class="text-sm font-semibold text-gtgold-600 dark:text-gtgold-400">${item.organization}</div>
+              <h3 class="font-display text-lg sm:text-xl font-extrabold text-slate-950 dark:text-white">${item.role}</h3>
+              <div class="text-sm font-bold text-gtgold-700 dark:text-gtgold-400">${item.organization}</div>
             </div>
 
-            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-600 dark:text-slate-300 pt-1">
+            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-800 dark:text-slate-200 font-medium pt-1">
               ${item.highlights.map(h => `
                 <li class="flex items-start gap-2.5">
-                  <span class="text-gtgold-500 mt-1">•</span>
-                  <span>${h}</span>
+                  <span class="text-gtgold-600 dark:text-gtgold-400 mt-1 font-bold">•</span>
+                  <span class="leading-relaxed">${h}</span>
                 </li>
               `).join("")}
             </ul>
