@@ -1602,6 +1602,10 @@
     let wheelRotationDeg = 0;
     const LAP_DURATION_SECONDS = 25.0; // 25 seconds for a relaxed, majestic circuit
 
+    // Smooth hover deceleration and acceleration physics
+    let isCarHovered = false;
+    let currentHoverMultiplier = 1.0; // 1.0 = full cruising speed, 0.0 = fully stopped
+
     function getTrackGeometry(vw, vh, cw, ch) {
       // Wide, sweeping corner curve radius for natural turning
       const r = 120;
@@ -1667,20 +1671,35 @@
 
       const avgSpeed = geo.totalPerimeter / LAP_DURATION_SECONDS;
       // Gentle speed variation: 1.08x on straights down to 0.76x at apex
-      const currentSpeed = avgSpeed * (1.08 - 0.32 * cornerFactor);
+      const baseCruisingSpeed = avgSpeed * (1.08 - 0.32 * cornerFactor);
+
+      // Smoothly interpolate hover multiplier:
+      // When hovered: gently decelerate to 0 (rate = 2.5/s, stops in ~0.4s)
+      // When unhovered: smoothly accelerate back to 1 (rate = 2.0/s, ramps up in ~0.5s)
+      const targetMultiplier = isCarHovered ? 0.0 : 1.0;
+      const rate = isCarHovered ? 2.6 : 2.0;
+      if (currentHoverMultiplier < targetMultiplier) {
+        currentHoverMultiplier = Math.min(targetMultiplier, currentHoverMultiplier + rate * dt);
+      } else if (currentHoverMultiplier > targetMultiplier) {
+        currentHoverMultiplier = Math.max(targetMultiplier, currentHoverMultiplier - rate * dt);
+      }
+
+      const currentSpeed = baseCruisingSpeed * currentHoverMultiplier;
 
       const stepDist = currentSpeed * dt;
       carDistance = (carDistance + stepDist) % geo.totalPerimeter;
 
-      // Wheel rotation: in direction of vehicle movement
+      // Wheel rotation: in direction of vehicle movement (stops smoothly when vehicle stops)
       // Forward vehicle movement requires counter-clockwise (negative) wheel spin
-      const wheelDiameterPx = ch * 0.488;
-      const wheelCircumference = Math.PI * wheelDiameterPx;
-      const wheelAngleDelta = (stepDist / wheelCircumference) * 360;
-      wheelRotationDeg = (wheelRotationDeg - wheelAngleDelta) % 360;
+      if (stepDist > 0.001) {
+        const wheelDiameterPx = ch * 0.488;
+        const wheelCircumference = Math.PI * wheelDiameterPx;
+        const wheelAngleDelta = (stepDist / wheelCircumference) * 360;
+        wheelRotationDeg = (wheelRotationDeg - wheelAngleDelta) % 360;
 
-      if (fw) fw.style.transform = `rotate(${wheelRotationDeg}deg)`;
-      if (rw) rw.style.transform = `rotate(${wheelRotationDeg}deg)`;
+        if (fw) fw.style.transform = `rotate(${wheelRotationDeg}deg)`;
+        if (rw) rw.style.transform = `rotate(${wheelRotationDeg}deg)`;
+      }
 
       let x = 0, y = 0, rot = 0;
       const d = carDistance;
@@ -1761,6 +1780,15 @@
     }
 
     function initRoamingCar() {
+      const car = document.getElementById("roaming-car");
+      if (car) {
+        car.addEventListener("mouseenter", () => {
+          isCarHovered = true;
+        });
+        car.addEventListener("mouseleave", () => {
+          isCarHovered = false;
+        });
+      }
       requestAnimationFrame(carLoop);
     }
 
