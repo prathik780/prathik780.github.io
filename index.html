@@ -63,16 +63,61 @@
   </script>
 
   <style>
-    /* Custom Subtle Grid & Acoustic Wave Aesthetics */
+    /* ==========================================================================
+       VINTAGE ARCHIVAL PAPER TEXTURE AESTHETICS
+       ========================================================================== */
+    body {
+      background-color: #f7f2e7;
+      color: #2b3240;
+      /* Dual-layer authentic vintage paper:
+         1. Procedural fractal micro-fiber paper grain
+         2. Soft radial aged paper shading & warm vellum center lighting */
+      background-image: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.44  0 0 0 0 0.36  0 0 0 0 0.22  0 0 0 0.085 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrain)'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 50% 18%, rgba(255, 254, 250, 0.96) 0%, rgba(248, 242, 230, 0.94) 48%, rgba(238, 228, 208, 0.98) 100%);
+      background-attachment: fixed;
+      background-repeat: repeat, no-repeat;
+      background-size: 320px 320px, cover;
+      min-height: 100vh;
+    }
+
+    .dark body,
+    html.dark body {
+      background-color: #070b14;
+      color: #f1f5f9;
+      /* Dark Archival Blueprint / Midnight Leather Parchment */
+      background-image: 
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperGrainDark'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0.82  0 1 0 0 0.75  0 0 1 0 0.6  0 0 0 0.045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paperGrainDark)'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 50% 18%, rgba(13, 21, 38, 0.96) 0%, rgba(8, 13, 24, 0.97) 50%, rgba(4, 7, 15, 1) 100%);
+      background-attachment: fixed;
+      background-repeat: repeat, no-repeat;
+      background-size: 320px 320px, cover;
+    }
+
+    /* Subtle Vintage Edge Vignette around the viewport */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 35;
+      box-shadow: inset 0 0 80px rgba(170, 140, 95, 0.14), inset 0 0 160px rgba(150, 120, 75, 0.08);
+    }
+    .dark body::before,
+    html.dark body::before {
+      box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.45), inset 0 0 200px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Custom Subtle Grid: Vintage Engineering Drafting Millimeter Grid */
     .bg-tech-grid {
       background-size: 36px 36px;
       background-image: 
-        linear-gradient(to right, rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
+        linear-gradient(to right, rgba(165, 135, 95, 0.11) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(165, 135, 95, 0.11) 1px, transparent 1px);
     }
     .dark .bg-tech-grid {
       background-image: 
-        linear-gradient(to right, rgba(216, 167, 56, 0.05) 1px, transparent 1px),
+        linear-gradient(to right, rgba(216, 167, 56, 0.06) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
     }
     /* Custom Scrollbar */
@@ -81,11 +126,17 @@
       height: 8px;
     }
     ::-webkit-scrollbar-track {
+      background: #efe7d5;
+    }
+    .dark ::-webkit-scrollbar-track {
       background: #090f1d;
     }
     ::-webkit-scrollbar-thumb {
-      background: #334155;
+      background: #c5b699;
       border-radius: 4px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #334155;
     }
     ::-webkit-scrollbar-thumb:hover {
       background: #d8a738;
@@ -128,7 +179,7 @@
   </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 font-sans antialiased selection:bg-gtgold-400 selection:text-navy-950 transition-colors duration-300">
+<body class="text-slate-800 dark:text-slate-100 font-sans antialiased selection:bg-gtgold-400 selection:text-navy-950 transition-colors duration-300">
 
   <!-- =====================================================================
        ROAMING ECOCAR CADILLAC LYRIQ MASCOT (TIRES GLUED TO SCREEN EDGES)
@@ -160,7 +211,7 @@
   <!-- =====================================================================
        1. STICKY TOP NAVIGATION BAR
   ====================================================================== -->
-  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/85 dark:bg-navy-950/85 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors">
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-[#fbf7ee]/90 dark:bg-navy-950/90 border-b border-[#e2d7c0] dark:border-slate-800/80 transition-colors">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <!-- Brand / Identity -->
       <a href="#top" class="flex items-center gap-3.5 group focus:outline-none">
@@ -178,19 +229,19 @@
       </a>
 
       <!-- Desktop Links -->
-      <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium text-slate-600 dark:text-slate-300">
-        <a href="#about" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">About</a>
-        <a href="#projects" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Projects</a>
-        <a href="#publications" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Publications & IP</a>
-        <a href="#skills" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Skills</a>
-        <a href="#experience" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Experience</a>
-        <a href="#beyond" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Beyond the Lab</a>
-        <a href="#contact" class="px-3 py-2 rounded-lg hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60 transition-colors">Contact</a>
+      <nav class="hidden lg:flex items-center gap-1 xl:gap-2 text-sm font-medium text-slate-700 dark:text-slate-300">
+        <a href="#about" class="px-3 py-2 rounded-lg hover:text-slate-950 dark:hover:text-white hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800/60 transition-colors">About</a>
+        <a href="#projects" class="px-3 py-2 rounded-lg hover:text-slate-950 dark:hover:text-white hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800/60 transition-colors">Projects</a>
+        <a href="#publications" class="px-3 py-2 rounded-lg hover:text-slate-950 dark:hover:text-white hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800/60 transition-colors">Publications & IP</a>
+        <a href="#skills" class="px-3 py-2 rounded-lg hover:text-slate-950 dark:hover:text-white hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800/60 transition-colors">Skills</a>
+        <a href="#experience" class="px-3 py-2 rounded-lg hover:text-slate-950 dark:hover:text-white hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800/60 transition-colors">Experience</a>
+        <a href="#beyond" class="px-3 py-2 rounded-lg hover:text-slate-950 dark:hover:text-white hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800/60 transition-colors">Beyond the Lab</a>
+        <a href="#contact" class="px-3 py-2 rounded-lg hover:text-slate-950 dark:hover:text-white hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800/60 transition-colors">Contact</a>
       </nav>
 
       <!-- Actions: Theme Toggle & CV Button -->
       <div class="flex items-center gap-2.5">
-        <button id="theme-toggle" type="button" aria-label="Toggle Dark or Light Mode" class="p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-gtgold-600 dark:hover:text-gtgold-400 transition-colors" title="Switch Theme">
+        <button id="theme-toggle" type="button" aria-label="Toggle Dark or Light Mode" class="p-2.5 rounded-lg border border-[#e2d7c0] dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800 hover:text-gtgold-600 dark:hover:text-gtgold-400 transition-colors" title="Switch Theme">
           <i class="fa-solid fa-sun hidden dark:inline-block text-gtgold-400"></i>
           <i class="fa-solid fa-moon inline-block dark:hidden text-slate-700"></i>
         </button>
@@ -201,22 +252,22 @@
         </button>
 
         <!-- Mobile Hamburger Button -->
-        <button id="mobile-menu-btn" type="button" aria-label="Open Menu" class="lg:hidden p-2.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">
+        <button id="mobile-menu-btn" type="button" aria-label="Open Menu" class="lg:hidden p-2.5 rounded-lg border border-[#e2d7c0] dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">
           <i class="fa-solid fa-bars text-base"></i>
         </button>
       </div>
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-navy-900 px-4 pt-3 pb-5 space-y-2">
-      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">About</a>
-      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Projects</a>
-      <a href="#publications" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Publications & IP</a>
-      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Skills</a>
-      <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Experience</a>
-      <a href="#beyond" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Beyond the Lab</a>
-      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800">Contact</a>
-      <div class="pt-2 border-t border-slate-200 dark:border-slate-800">
+    <div id="mobile-menu" class="hidden lg:hidden border-t border-[#e2d7c0] dark:border-slate-800 bg-[#fdfbf7] dark:bg-navy-900 px-4 pt-3 pb-5 space-y-2">
+      <a href="#about" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">About</a>
+      <a href="#projects" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">Projects</a>
+      <a href="#publications" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">Publications & IP</a>
+      <a href="#skills" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">Skills</a>
+      <a href="#experience" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">Experience</a>
+      <a href="#beyond" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">Beyond the Lab</a>
+      <a href="#contact" class="mobile-nav-link block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-[#efe7d3]/80 dark:hover:bg-slate-800">Contact</a>
+      <div class="pt-2 border-t border-[#e2d7c0] dark:border-slate-800">
         <button onclick="openCvModal()" class="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg font-semibold text-sm bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950">
           <i class="fa-solid fa-file-pdf"></i>
           <span>Download Curriculum Vitae (PDF)</span>
@@ -304,10 +355,10 @@
             <div class="absolute -bottom-3 -right-3 w-16 h-16 border-b-2 border-r-2 border-gtgold-400 rounded-br-xl pointer-events-none"></div>
 
             <!-- Main Profile Card Container -->
-            <div class="relative rounded-2xl overflow-hidden bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-xl">
+            <div class="relative rounded-2xl overflow-hidden bg-[#fffefb] dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-xl">
               
               <!-- Top Technical Status Header inside Frame -->
-              <div class="px-4 py-2.5 bg-slate-100 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+              <div class="px-4 py-2.5 bg-[#f5ecda] dark:bg-navy-950 border-b border-[#e2d7be] dark:border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
                 <span class="flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-gtgold-400"></span>
                   PHD_RESEARCHER // GEORGIA TECH
@@ -370,7 +421,7 @@
   <!-- =====================================================================
        4. FEATURED ENGINEERING & RESEARCH PROJECTS
   ====================================================================== -->
-  <section id="projects" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-navy-900/40">
+  <section id="projects" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header + "+ Add / Edit Project Preview" Button -->
@@ -390,7 +441,7 @@
       </div>
 
       <!-- Category Filter Tabs -->
-      <div class="flex flex-wrap items-center gap-2 mb-8 pb-2 border-b border-slate-200 dark:border-slate-800" id="project-filter-tabs">
+      <div class="flex flex-wrap items-center gap-2 mb-8 pb-2 border-b border-[#e2d7c0] dark:border-slate-800" id="project-filter-tabs">
         <!-- Rendered dynamically -->
       </div>
 
@@ -404,7 +455,7 @@
   <!-- =====================================================================
        5. PUBLICATIONS & INTELLECTUAL PROPERTY SECTION
   ====================================================================== -->
-  <section id="publications" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-navy-950">
+  <section id="publications" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
@@ -423,9 +474,9 @@
         <!-- Filter Pills for IP / Publications -->
         <div class="flex flex-wrap gap-2" id="pub-filter-buttons">
           <button onclick="filterPublications('All')" data-pub-filter="All" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 transition-colors">All Output</button>
-          <button onclick="filterPublications('Patent')" data-pub-filter="Patent" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-navy-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">Patents</button>
-          <button onclick="filterPublications('Journal')" data-pub-filter="Journal" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-navy-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">Journal Articles</button>
-          <button onclick="filterPublications('Manuscript')" data-pub-filter="Manuscript" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-white dark:bg-navy-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">Manuscripts</button>
+          <button onclick="filterPublications('Patent')" data-pub-filter="Patent" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-900 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">Patents</button>
+          <button onclick="filterPublications('Journal')" data-pub-filter="Journal" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-900 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">Journal Articles</button>
+          <button onclick="filterPublications('Manuscript')" data-pub-filter="Manuscript" class="pub-filter-btn px-3.5 py-1.5 rounded-lg font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-900 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">Manuscripts</button>
         </div>
       </div>
 
@@ -439,7 +490,7 @@
   <!-- =====================================================================
        6. TECHNICAL ARSENAL / SKILLS MATRIX
   ====================================================================== -->
-  <section id="skills" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-navy-900/40">
+  <section id="skills" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
         <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
@@ -463,7 +514,7 @@
   <!-- =====================================================================
        7. EXPERIENCE & EDUCATION TIMELINE
   ====================================================================== -->
-  <section id="experience" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-slate-50 dark:bg-navy-950">
+  <section id="experience" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
         <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
@@ -475,7 +526,7 @@
         </h2>
       </div>
 
-      <div class="relative pl-6 sm:pl-8 border-l-2 border-slate-200 dark:border-slate-800 space-y-10" id="timeline-list">
+      <div class="relative pl-6 sm:pl-8 border-l-2 border-[#d8cbb1] dark:border-slate-800 space-y-10" id="timeline-list">
         <!-- Populated dynamically via PORTFOLIO_DATA.timeline -->
       </div>
     </div>
@@ -484,7 +535,7 @@
   <!-- =====================================================================
        8. BEYOND THE LAB (PERSONAL & FUN)
   ====================================================================== -->
-  <section id="beyond" class="py-16 lg:py-24 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-navy-900/40">
+  <section id="beyond" class="py-16 lg:py-24 border-t border-[#e2d7c0] dark:border-slate-800/80 bg-transparent">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="mb-12">
         <div class="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-gtgold-600 dark:text-gtgold-400 mb-2">
@@ -501,7 +552,7 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <!-- Card 1 -->
-        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-3 card-lift shadow-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
           <div class="text-3xl">☕</div>
           <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Coffee & Cadence</h3>
           <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -510,7 +561,7 @@
         </div>
 
         <!-- Card 2 -->
-        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-3 card-lift shadow-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
           <div class="text-3xl">🏎️</div>
           <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">EVs & Motorsport</h3>
           <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -519,7 +570,7 @@
         </div>
 
         <!-- Card 3 -->
-        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-3 card-lift shadow-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
           <div class="text-3xl">🍊</div>
           <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Capybara Chill Mindset</h3>
           <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -528,7 +579,7 @@
         </div>
 
         <!-- Card 4 -->
-        <div class="p-6 rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-3 card-lift shadow-sm">
+        <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-3 card-lift shadow-sm backdrop-blur-sm">
           <div class="text-3xl">🏸</div>
           <h3 class="font-display font-bold text-base text-slate-900 dark:text-white">Badminton & Travel</h3>
           <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -542,7 +593,7 @@
   <!-- =====================================================================
        9. CONTACT & FOOTER
   ====================================================================== -->
-  <footer id="contact" class="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-navy-900 pt-16 pb-12">
+  <footer id="contact" class="border-t border-[#e2d7c0] dark:border-slate-800 bg-[#f7f0e0]/70 dark:bg-navy-950/80 pt-16 pb-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <!-- Executive Contact Card -->
@@ -596,19 +647,19 @@
        MODAL 1: DETAILED PROJECT CASE STUDY MODAL
   ====================================================================== -->
   <div id="case-study-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
-    <div class="relative w-full max-w-4xl rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+    <div class="relative w-full max-w-4xl rounded-2xl bg-[#fdfbf6] dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
       
       <!-- Modal Sticky Header -->
-      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between gap-4 shrink-0">
+      <div class="px-6 py-4 bg-[#f5ecda] dark:bg-navy-950 border-b border-[#e2d7be] dark:border-slate-800 flex items-center justify-between gap-4 shrink-0">
         <div class="flex items-center gap-2.5">
           <span id="modal-project-category" class="px-2.5 py-1 rounded-md font-mono text-xs font-medium bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30">
             Category
           </span>
-          <span id="modal-project-badge" class="px-2.5 py-1 rounded-md font-mono text-xs bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+          <span id="modal-project-badge" class="px-2.5 py-1 rounded-md font-mono text-xs bg-[#ebe0c9] dark:bg-slate-800 text-slate-700 dark:text-slate-300">
             Badge
           </span>
         </div>
-        <button onclick="closeCaseStudyModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" aria-label="Close Modal">
+        <button onclick="closeCaseStudyModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-[#ebe0c9] dark:hover:bg-slate-800 transition-colors" aria-label="Close Modal">
           <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
@@ -636,7 +687,7 @@
 
         <!-- Case Study 3-Pillar Grid: Problem, Technical Approach, Key Results -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="p-5 rounded-xl bg-slate-50 dark:bg-navy-950/70 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="p-5 rounded-xl bg-[#f5ecda]/80 dark:bg-navy-950/70 border border-[#e2d7be] dark:border-slate-800 space-y-2">
             <div class="font-mono text-xs font-bold uppercase tracking-wider text-gtgold-600 dark:text-gtgold-400 flex items-center gap-2">
               <i class="fa-solid fa-bullseye"></i>
               <span>Problem Statement & Objective</span>
@@ -644,7 +695,7 @@
             <p id="modal-project-problem" class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed"></p>
           </div>
 
-          <div class="p-5 rounded-xl bg-slate-50 dark:bg-navy-950/70 border border-slate-200 dark:border-slate-800 space-y-2">
+          <div class="p-5 rounded-xl bg-[#f5ecda]/80 dark:bg-navy-950/70 border border-[#e2d7be] dark:border-slate-800 space-y-2">
             <div class="font-mono text-xs font-bold uppercase tracking-wider text-gtgold-600 dark:text-gtgold-400 flex items-center gap-2">
               <i class="fa-solid fa-gears"></i>
               <span>Methodology & Technical Execution</span>
@@ -672,7 +723,7 @@
       </div>
 
       <!-- Modal Footer -->
-      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-t border-slate-200 dark:border-slate-800 flex items-center justify-end shrink-0">
+      <div class="px-6 py-4 bg-[#f5ecda] dark:bg-navy-950 border-t border-[#e2d7be] dark:border-slate-800 flex items-center justify-end shrink-0">
         <button onclick="closeCaseStudyModal()" class="px-4 py-2 rounded-lg font-display font-semibold text-xs bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950">
           Close Case Study
         </button>
@@ -684,8 +735,8 @@
        MODAL 2: BIBTEX CITATION & EXPORT MODAL
   ====================================================================== -->
   <div id="bibtex-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="relative w-full max-w-xl rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
-      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+    <div class="relative w-full max-w-xl rounded-2xl bg-[#fdfbf6] dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-[#f5ecda] dark:bg-navy-950 border-b border-[#e2d7be] dark:border-slate-800 flex items-center justify-between">
         <span id="bibtex-modal-title" class="font-mono text-xs font-bold text-gtgold-600 dark:text-gtgold-400 uppercase tracking-wider">BibTeX Citation</span>
         <button onclick="closeBibtexModal()" class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-900 dark:hover:text-white">
           <i class="fa-solid fa-xmark"></i>
@@ -707,8 +758,8 @@
        MODAL 3: EXECUTIVE CV SUMMARY & PDF DOWNLOAD MODAL
   ====================================================================== -->
   <div id="cv-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-navy-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="relative w-full max-w-2xl rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden">
-      <div class="px-6 py-4 bg-slate-50 dark:bg-navy-950 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+    <div class="relative w-full max-w-2xl rounded-2xl bg-[#fdfbf6] dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-[#f5ecda] dark:bg-navy-950 border-b border-[#e2d7be] dark:border-slate-800 flex items-center justify-between">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-file-pdf text-gtgold-500"></i>
           <span class="font-display font-bold text-base text-slate-900 dark:text-white">Curriculum Vitae — Prathik Reddy Gunreddy</span>
@@ -718,7 +769,7 @@
         </button>
       </div>
       <div class="p-6 space-y-4 text-sm text-slate-600 dark:text-slate-300">
-        <div class="p-4 rounded-xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-2 font-mono text-xs">
+        <div class="p-4 rounded-xl bg-[#f5ecda]/80 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-2 font-mono text-xs">
           <div class="text-slate-900 dark:text-white font-bold">PRATHIK REDDY GUNREDDY</div>
           <div>Ph.D. Candidate in Mechanical Engineering • Georgia Institute of Technology (Expected May 2027)</div>
           <div>B.Tech in Mechanical Engineering • Indian Institute of Technology (IIT) Bombay</div>
@@ -1202,7 +1253,7 @@
 
       heroContainer.innerHTML = PORTFOLIO_DATA.profile.socials.map(s => `
         <a href="${s.url}" target="_blank" rel="noopener noreferrer" aria-label="${s.label}" title="${s.label}"
-           class="w-10 h-10 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-navy-900 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:border-gtgold-500 dark:hover:border-gtgold-400 hover:text-gtgold-600 dark:hover:text-gtgold-400 transition-all">
+           class="w-10 h-10 rounded-xl border border-[#e2d7be] dark:border-slate-700 bg-[#fffefb]/90 dark:bg-navy-900 flex items-center justify-center text-slate-700 dark:text-slate-300 hover:border-gtgold-500 dark:hover:border-gtgold-400 hover:text-gtgold-600 dark:hover:text-gtgold-400 transition-all">
           <i class="${s.icon} text-sm"></i>
         </a>
       `).join("");
@@ -1219,7 +1270,7 @@
     function renderMetricsBanner() {
       const container = document.getElementById("impact-metrics-grid");
       container.innerHTML = PORTFOLIO_DATA.metrics.map(m => `
-        <div class="p-5 rounded-2xl bg-white dark:bg-navy-900/90 border border-slate-200/90 dark:border-slate-800 shadow-sm flex flex-col justify-between gap-3 card-lift">
+        <div class="p-5 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-900/85 border border-[#e2d7be] dark:border-slate-800 shadow-sm flex flex-col justify-between gap-3 card-lift backdrop-blur-sm">
           <div class="flex items-center justify-between">
             <span class="font-mono text-xs uppercase tracking-wider text-gtgold-600 dark:text-gtgold-400 font-semibold">${m.title}</span>
             <span class="w-8 h-8 rounded-lg bg-gtgold-50 dark:bg-gtgold-400/10 border border-gtgold-200 dark:border-gtgold-400/20 flex items-center justify-center text-gtgold-600 dark:text-gtgold-400">
@@ -1253,7 +1304,7 @@
                   class="px-4 py-2 rounded-xl font-mono text-xs font-medium transition-all flex items-center gap-2 ${
                     isActive
                       ? 'bg-slate-900 text-white dark:bg-gtgold-400 dark:text-navy-950 shadow-sm font-semibold'
-                      : 'bg-slate-100 dark:bg-navy-950 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-transparent hover:border-slate-300 dark:hover:border-slate-700'
+                      : 'bg-[#f5ecda]/70 dark:bg-navy-950 text-slate-700 dark:text-slate-400 hover:text-slate-950 dark:hover:text-white border border-[#e2d7be]/80 hover:border-[#c5b497] dark:hover:border-slate-700'
                   }">
             <span>${cat}</span>
             <span class="px-1.5 py-0.2 rounded text-[10px] ${isActive ? 'bg-white/20 dark:bg-navy-950/20' : 'bg-slate-200 dark:bg-slate-800'}">${count}</span>
@@ -1276,7 +1327,7 @@
 
       container.innerHTML = filtered.map(proj => `
         <article onclick="openCaseStudyModal('${proj.id}')"
-                 class="group cursor-pointer rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800/90 hover:border-gtgold-500 dark:hover:border-gtgold-400/70 overflow-hidden flex flex-col justify-between card-lift shadow-sm">
+                 class="group cursor-pointer rounded-2xl bg-[#fffefb]/90 dark:bg-navy-950/90 border border-[#e2d7be] dark:border-slate-800/90 hover:border-gtgold-500 dark:hover:border-gtgold-400/70 overflow-hidden flex flex-col justify-between card-lift shadow-sm backdrop-blur-sm">
           <div>
             <!-- Top Technical Diagram / Visual Header -->
             <div class="relative border-b border-slate-200 dark:border-slate-800/80 bg-navy-950 overflow-hidden">
@@ -1306,12 +1357,12 @@
           <div class="px-6 pb-6 pt-2 space-y-4">
             <div class="flex flex-wrap gap-1.5">
               ${proj.tags.map(t => `
-                <span class="px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 font-mono text-[11px]">
+                <span class="px-2 py-0.5 rounded bg-[#f3ead8] dark:bg-slate-800/80 text-slate-800 dark:text-slate-300 font-mono text-[11px]">
                   ${t}
                 </span>
               `).join("")}
             </div>
-            <div class="pt-3 border-t border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between text-xs font-display font-semibold text-slate-800 dark:text-gtgold-400">
+            <div class="pt-3 border-t border-[#e2d7be]/80 dark:border-slate-800/80 flex items-center justify-between text-xs font-display font-semibold text-slate-800 dark:text-gtgold-400">
               <span>Inspect Engineering Case Study</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[11px] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"></i>
             </div>
@@ -1408,7 +1459,7 @@
           : "bg-sky-500/15 text-sky-700 dark:text-sky-300 border-sky-500/30";
 
         return `
-          <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-sm flex flex-col lg:flex-row lg:items-center justify-between gap-6 backdrop-blur-sm">
             <div class="space-y-2.5 max-w-4xl">
               <div class="flex flex-wrap items-center gap-2.5">
                 <span class="font-mono text-xs text-slate-400">[0${idx + 1}]</span>
@@ -1430,12 +1481,12 @@
 
             <div class="flex flex-wrap lg:flex-col items-stretch gap-2 shrink-0">
               <button onclick="openBibtexModal('${pub.id}')"
-                      class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-slate-100 dark:bg-navy-950 text-slate-700 dark:text-gtgold-400 border border-slate-200 dark:border-slate-800 hover:border-gtgold-400 transition-colors">
+                      class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-[#f5ecda] dark:bg-navy-950 text-slate-800 dark:text-gtgold-400 border border-[#e2d7be] dark:border-slate-800 hover:border-gtgold-400 transition-colors">
                 <i class="fa-solid fa-quote-right text-[10px]"></i>
                 <span>Cite (BibTeX)</span>
               </button>
               <a href="${pub.doiUrl}"
-                 class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-white dark:bg-navy-950 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-slate-400 transition-colors">
+                 class="inline-flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl font-mono text-xs font-medium bg-[#fffefb] dark:bg-navy-950 text-slate-700 dark:text-slate-300 border border-[#e2d7be] dark:border-slate-800 hover:border-slate-400 transition-colors">
                 <i class="fa-solid fa-file-lines text-[10px]"></i>
                 <span>Preprint / Request PDF</span>
               </a>
@@ -1451,7 +1502,7 @@
     function renderSkillsMatrix() {
       const container = document.getElementById("skills-grid");
       container.innerHTML = PORTFOLIO_DATA.skills.map(group => `
-        <div class="p-6 sm:p-7 rounded-2xl bg-slate-50 dark:bg-navy-950 border border-slate-200 dark:border-slate-800 space-y-5">
+        <div class="p-6 sm:p-7 rounded-2xl bg-[#fffefb]/80 dark:bg-navy-950 border border-[#e2d7be] dark:border-slate-800 space-y-5 backdrop-blur-sm">
           <div class="flex items-start justify-between gap-4">
             <div>
               <h3 class="font-display text-lg font-bold text-slate-900 dark:text-white">${group.domain}</h3>
@@ -1464,12 +1515,12 @@
 
           <div class="space-y-3">
             ${group.items.map(skill => `
-              <div class="p-3 rounded-xl bg-white dark:bg-navy-900 border border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between gap-3">
+              <div class="p-3 rounded-xl bg-[#fbf6ea] dark:bg-navy-900 border border-[#e4dbc8] dark:border-slate-800/80 flex items-center justify-between gap-3">
                 <span class="text-xs sm:text-sm font-medium text-slate-800 dark:text-slate-200">${skill.name}</span>
                 <span class="shrink-0 px-2 py-0.5 rounded font-mono text-[10px] font-semibold ${
                   skill.level === 'Expert'
                     ? 'bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30'
-                    : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
+                    : 'bg-[#ede3cf] dark:bg-slate-800 text-slate-700 dark:text-slate-400'
                 }">
                   ${skill.level}
                 </span>
@@ -1485,9 +1536,9 @@
       container.innerHTML = PORTFOLIO_DATA.timeline.map(item => `
         <div class="relative group">
           <!-- Timeline Node Dot -->
-          <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-white dark:bg-navy-950 border-2 border-gtgold-500 group-hover:scale-125 transition-transform"></span>
+          <span class="absolute -left-[31px] sm:-left-[39px] top-1.5 w-4 h-4 rounded-full bg-[#f7f2e7] dark:bg-navy-950 border-2 border-gtgold-500 group-hover:scale-125 transition-transform"></span>
 
-          <div class="p-6 rounded-2xl bg-white dark:bg-navy-900 border border-slate-200 dark:border-slate-800 shadow-sm space-y-3">
+          <div class="p-6 rounded-2xl bg-[#fffefb]/85 dark:bg-navy-900 border border-[#e2d7be] dark:border-slate-800 shadow-sm space-y-3 backdrop-blur-sm">
             <div class="flex flex-wrap items-center justify-between gap-2">
               <div class="flex items-center gap-2.5">
                 <span class="px-2.5 py-0.5 rounded-md font-mono text-xs font-medium bg-gtgold-400/15 text-gtgold-700 dark:text-gtgold-300 border border-gtgold-400/30">
