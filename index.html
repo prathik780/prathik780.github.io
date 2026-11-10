@@ -1600,11 +1600,11 @@
 
     let carDistance = 0;
     let wheelRotationDeg = 0;
-    const LAP_DURATION_SECONDS = 20.0; // 20 seconds for one complete circuit
+    const LAP_DURATION_SECONDS = 25.0; // 25 seconds for a relaxed, majestic circuit
 
-    function getTrackSegments(vw, vh, cw, ch) {
-      // Corner turning zone radius (in pixels)
-      const r = 80;
+    function getTrackGeometry(vw, vh, cw, ch) {
+      // Wide, sweeping corner curve radius for natural turning
+      const r = 120;
 
       // 4 straight path lengths:
       const L_bottom = Math.max(10, vw - cw - 2 * r);
@@ -1612,8 +1612,8 @@
       const L_top    = Math.max(10, vw - cw - 2 * r);
       const L_right  = Math.max(10, vh - ch - 2 * r);
 
-      // 4 rounded corners:
-      const cornerLen = (Math.PI / 2) * r; // ~125.6px per corner
+      // Arc length of a 90-degree corner:
+      const cornerLen = (Math.PI / 2) * r; // ~188.5px per corner
 
       const totalPerimeter = L_bottom + cornerLen + L_left + cornerLen + L_top + cornerLen + L_right + cornerLen;
 
@@ -1637,42 +1637,47 @@
       const cw = car.offsetWidth || 175;
       const ch = car.offsetHeight || 62.5;
 
-      const seg = getTrackSegments(vw, vh, cw, ch);
+      const geo = getTrackGeometry(vw, vh, cw, ch);
 
-      // Speed profile: slow down at corners (like real life!)
-      // Check if current position is near a corner:
-      let distInLap = carDistance % seg.totalPerimeter;
-      let isNearCorner = false;
+      // Segment boundary thresholds:
+      const s1 = geo.L_bottom;
+      const c1 = s1 + geo.cornerLen;
+      const s2 = c1 + geo.L_left;
+      const c2 = s2 + geo.cornerLen;
+      const s3 = c2 + geo.L_top;
+      const c3 = s3 + geo.cornerLen;
+      const s4 = c3 + geo.L_right;
+      const c4 = s4 + geo.cornerLen; // totalPerimeter
 
-      // Cumulative segment thresholds:
-      const s1 = seg.L_bottom;
-      const c1 = s1 + seg.cornerLen;
-      const s2 = c1 + seg.L_left;
-      const c2 = s2 + seg.cornerLen;
-      const s3 = c2 + seg.L_top;
-      const c3 = s3 + seg.cornerLen;
-      const s4 = c3 + seg.L_right;
-      const c4 = s4 + seg.cornerLen; // totalPerimeter
+      // Continuous harmonic speed profile:
+      // Uses a smooth cosine curve for natural, gentle deceleration in turns:
+      // In the middle of corners, speed dips gracefully to ~75% without sudden braking
+      const dInLap = carDistance % geo.totalPerimeter;
+      let cornerFactor = 0; // 0 on straightaways, up to 1 at apex of corner
 
-      if ((distInLap >= s1 - 30 && distInLap <= c1 + 30) ||
-          (distInLap >= s2 - 30 && distInLap <= c2 + 30) ||
-          (distInLap >= s3 - 30 && distInLap <= c3 + 30) ||
-          (distInLap >= s4 - 30 || distInLap <= 30)) {
-        isNearCorner = true;
+      if (dInLap >= s1 && dInLap < c1) {
+        cornerFactor = Math.sin(((dInLap - s1) / geo.cornerLen) * Math.PI);
+      } else if (dInLap >= s2 && dInLap < c2) {
+        cornerFactor = Math.sin(((dInLap - s2) / geo.cornerLen) * Math.PI);
+      } else if (dInLap >= s3 && dInLap < c3) {
+        cornerFactor = Math.sin(((dInLap - s3) / geo.cornerLen) * Math.PI);
+      } else if (dInLap >= s4 && dInLap < c4) {
+        cornerFactor = Math.sin(((dInLap - s4) / geo.cornerLen) * Math.PI);
       }
 
-      const baseSpeed = seg.totalPerimeter / LAP_DURATION_SECONDS;
-      const currentSpeed = isNearCorner ? baseSpeed * 0.55 : baseSpeed * 1.15;
+      const avgSpeed = geo.totalPerimeter / LAP_DURATION_SECONDS;
+      // Gentle speed variation: 1.08x on straights down to 0.76x at apex
+      const currentSpeed = avgSpeed * (1.08 - 0.32 * cornerFactor);
 
       const stepDist = currentSpeed * dt;
-      carDistance = (carDistance + stepDist) % seg.totalPerimeter;
+      carDistance = (carDistance + stepDist) % geo.totalPerimeter;
 
       // Wheel rotation: in direction of vehicle movement
-      // Tire circumference = pi * wheelDiameter ~ pi * (ch * 0.488) ~ 95.8px
+      // Forward vehicle movement requires counter-clockwise (negative) wheel spin
       const wheelDiameterPx = ch * 0.488;
       const wheelCircumference = Math.PI * wheelDiameterPx;
       const wheelAngleDelta = (stepDist / wheelCircumference) * 360;
-      wheelRotationDeg = (wheelRotationDeg + wheelAngleDelta) % 360;
+      wheelRotationDeg = (wheelRotationDeg - wheelAngleDelta) % 360;
 
       if (fw) fw.style.transform = `rotate(${wheelRotationDeg}deg)`;
       if (rw) rw.style.transform = `rotate(${wheelRotationDeg}deg)`;
@@ -1682,59 +1687,63 @@
 
       if (d < s1) {
         // 1. Bottom straight (right to left, rot = 0deg)
-        const progress = d / seg.L_bottom;
-        x = (vw - cw - seg.r) - progress * seg.L_bottom;
+        const progress = d / geo.L_bottom;
+        x = (vw - cw - geo.r) - progress * geo.L_bottom;
         y = vh - ch;
         rot = 0;
       } else if (d < c1) {
         // Corner 1: Bottom-Left turning 0 -> 90deg
-        const p = (d - s1) / seg.cornerLen; // 0 to 1
-        const angle = p * (Math.PI / 2);
-        rot = p * 90;
-        // Arc center is at (seg.r + (ch - cw)/2, vh - ch - seg.r)
-        x = seg.r * (1 - Math.sin(angle)) + (p * ((ch - cw) / 2));
-        y = (vh - ch) - seg.r * (1 - Math.cos(angle));
+        // Smooth sine ease for rotation:
+        const t = (d - s1) / geo.cornerLen;
+        const smoothT = (1 - Math.cos(t * Math.PI)) / 2;
+        rot = smoothT * 90;
+        const angle = t * (Math.PI / 2);
+        x = (geo.r * (1 - Math.sin(angle))) + (smoothT * ((ch - cw) / 2));
+        y = (vh - ch) - (geo.r * (1 - Math.cos(angle)));
       } else if (d < s2) {
         // 2. Left straight (bottom to top, rot = 90deg)
-        const progress = (d - c1) / seg.L_left;
+        const progress = (d - c1) / geo.L_left;
         x = (ch - cw) / 2;
-        y = (vh - ch - seg.r) - progress * seg.L_left;
+        y = (vh - ch - geo.r) - progress * geo.L_left;
         rot = 90;
       } else if (d < c2) {
         // Corner 2: Top-Left turning 90 -> 180deg
-        const p = (d - s2) / seg.cornerLen;
-        const angle = p * (Math.PI / 2);
-        rot = 90 + p * 90;
-        x = ((ch - cw) / 2) * (1 - p) + seg.r * (1 - Math.cos(angle));
-        y = seg.r * (1 - Math.sin(angle));
+        const t = (d - s2) / geo.cornerLen;
+        const smoothT = (1 - Math.cos(t * Math.PI)) / 2;
+        rot = 90 + smoothT * 90;
+        const angle = t * (Math.PI / 2);
+        x = ((ch - cw) / 2) * (1 - smoothT) + (geo.r * (1 - Math.cos(angle)));
+        y = geo.r * (1 - Math.sin(angle));
       } else if (d < s3) {
         // 3. Top straight (left to right, rot = 180deg)
-        const progress = (d - c2) / seg.L_top;
-        x = seg.r + progress * seg.L_top;
+        const progress = (d - c2) / geo.L_top;
+        x = geo.r + progress * geo.L_top;
         y = 0;
         rot = 180;
       } else if (d < c3) {
         // Corner 3: Top-Right turning 180 -> 270deg
-        const p = (d - s3) / seg.cornerLen;
-        const angle = p * (Math.PI / 2);
-        rot = 180 + p * 90;
+        const t = (d - s3) / geo.cornerLen;
+        const smoothT = (1 - Math.cos(t * Math.PI)) / 2;
+        rot = 180 + smoothT * 90;
+        const angle = t * (Math.PI / 2);
         const rightTargetX = vw - (cw + ch) / 2;
-        x = (vw - cw - seg.r) + seg.r * Math.sin(angle) + p * (rightTargetX - (vw - cw));
-        y = seg.r * (1 - Math.cos(angle));
+        x = (vw - cw - geo.r) + (geo.r * Math.sin(angle)) + (smoothT * (rightTargetX - (vw - cw)));
+        y = geo.r * (1 - Math.cos(angle));
       } else if (d < s4) {
         // 4. Right straight (top to bottom, rot = 270deg)
-        const progress = (d - c3) / seg.L_right;
+        const progress = (d - c3) / geo.L_right;
         x = vw - (cw + ch) / 2;
-        y = seg.r + progress * seg.L_right;
+        y = geo.r + progress * geo.L_right;
         rot = 270;
       } else {
         // Corner 4: Bottom-Right turning 270 -> 360/0deg
-        const p = (d - s4) / seg.cornerLen;
-        const angle = p * (Math.PI / 2);
-        rot = 270 + p * 90;
+        const t = (d - s4) / geo.cornerLen;
+        const smoothT = (1 - Math.cos(t * Math.PI)) / 2;
+        rot = 270 + smoothT * 90;
+        const angle = t * (Math.PI / 2);
         const rightStartX = vw - (cw + ch) / 2;
-        x = rightStartX + p * ((vw - cw - seg.r) - rightStartX) + seg.r * (1 - Math.cos(angle));
-        y = (vh - ch - seg.r) + seg.r * Math.sin(angle);
+        x = rightStartX + (smoothT * ((vw - cw - geo.r) - rightStartX)) + (geo.r * (1 - Math.cos(angle)));
+        y = (vh - ch - geo.r) + (geo.r * Math.sin(angle));
       }
 
       car.style.left = `${x}px`;
