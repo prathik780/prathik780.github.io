@@ -104,6 +104,10 @@
       image-rendering: -webkit-optimize-contrast;
       image-rendering: crisp-edges;
     }
+    .car-wheel-img {
+      transform-origin: center center;
+      will-change: transform;
+    }
     @media (max-width: 640px) {
       .roaming-car-wrapper {
         width: 125px;
@@ -125,8 +129,16 @@
         <span id="roaming-car-text">Too fast to catch it? ⚡</span>
       </div>
 
-      <!-- Pristine EcoCAR Cadillac LYRIQ Image -->
-      <img src="ecocar-lyriq.png" alt="Georgia Tech EcoCAR Cadillac LYRIQ" class="w-full h-full object-contain pointer-events-none select-none" />
+      <!-- Car Body with Hollow Wheel Wells -->
+      <img src="ecocar-body.png" alt="Georgia Tech EcoCAR Cadillac LYRIQ" class="w-full h-full object-contain pointer-events-none select-none relative z-10" />
+
+      <!-- Front Rolling Wheel (left: 8.1%, width: 17.5%, height: 48.8%, bottom: 0) -->
+      <img id="car-front-wheel" src="ecocar-wheel.png" alt="Front Wheel" class="car-wheel-img absolute pointer-events-none select-none z-20"
+           style="left: 8.1%; bottom: 0; width: 17.5%; height: 48.8%;" />
+
+      <!-- Rear Rolling Wheel (left: 71.2%, width: 17.5%, height: 48.8%, bottom: 0) -->
+      <img id="car-rear-wheel" src="ecocar-wheel.png" alt="Rear Wheel" class="car-wheel-img absolute pointer-events-none select-none z-20"
+           style="left: 71.2%; bottom: 0; width: 17.5%; height: 48.8%;" />
     </div>
   </div>
 
@@ -1578,7 +1590,7 @@
     });
 
     // ============================================================================
-    // ROAMING ECOCAR CADILLAC LYRIQ MASCOT (CONTINUOUS ROLLING & CIRCUIT)
+    // ROAMING ECOCAR CADILLAC LYRIQ MASCOT (CONTINUOUS ROLLING & SMOOTH TURNING)
     // ============================================================================
     const CAR_QUOTES = [
       "Too fast to catch it? ⚡",
@@ -1587,72 +1599,142 @@
     let carQuoteIdx = 0;
 
     let carDistance = 0;
-    const LAP_DURATION_SECONDS = 12.0; // Exactly 12 seconds per entire revolution
+    let wheelRotationDeg = 0;
+    const LAP_DURATION_SECONDS = 20.0; // 20 seconds for one complete circuit
+
+    function getTrackSegments(vw, vh, cw, ch) {
+      // Corner turning zone radius (in pixels)
+      const r = 80;
+
+      // 4 straight path lengths:
+      const L_bottom = Math.max(10, vw - cw - 2 * r);
+      const L_left   = Math.max(10, vh - ch - 2 * r);
+      const L_top    = Math.max(10, vw - cw - 2 * r);
+      const L_right  = Math.max(10, vh - ch - 2 * r);
+
+      // 4 rounded corners:
+      const cornerLen = (Math.PI / 2) * r; // ~125.6px per corner
+
+      const totalPerimeter = L_bottom + cornerLen + L_left + cornerLen + L_top + cornerLen + L_right + cornerLen;
+
+      return {
+        vw, vh, cw, ch, r,
+        L_bottom, L_left, L_top, L_right,
+        cornerLen,
+        totalPerimeter
+      };
+    }
 
     function updateCarFrame(dt) {
       const car = document.getElementById("roaming-car");
       if (!car) return;
+
+      const fw = document.getElementById("car-front-wheel");
+      const rw = document.getElementById("car-rear-wheel");
 
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const cw = car.offsetWidth || 175;
       const ch = car.offsetHeight || 62.5;
 
-      // The 4 perimeter sides:
-      // Side 1 (Bottom Edge): driving right-to-left
-      //    Orientation: 0deg (upright).
-      //    Tires on bottom border: y = vh - ch.
-      //    x goes from (vw - cw) down to 0.
-      // Side 2 (Left Edge): driving bottom-to-top
-      //    Orientation: rotate 90deg clockwise.
-      //    Tires on left border: x = (ch - cw) / 2, y = vh - ch down to 0.
-      // Side 3 (Top Edge): driving left-to-right
-      //    Orientation: rotate 90deg clockwise again = 180deg.
-      //    Tires on top border: y = 0.
-      //    x goes from 0 to (vw - cw).
-      // Side 4 (Right Edge): driving top-to-bottom
-      //    Orientation: rotate 90deg clockwise again = 270deg.
-      //    Tires on right border: x = vw - (cw + ch) / 2.
-      //    y goes from 0 to (vh - ch).
+      const seg = getTrackSegments(vw, vh, cw, ch);
 
-      const bottomLen = Math.max(10, vw - cw);
-      const leftLen = Math.max(10, vh - ch);
-      const topLen = bottomLen;
-      const rightLen = leftLen;
-      const totalPerimeter = bottomLen + leftLen + topLen + rightLen;
+      // Speed profile: slow down at corners (like real life!)
+      // Check if current position is near a corner:
+      let distInLap = carDistance % seg.totalPerimeter;
+      let isNearCorner = false;
 
-      const speed = totalPerimeter / LAP_DURATION_SECONDS; // Speed to complete in 12s
-      carDistance = (carDistance + speed * dt) % totalPerimeter;
+      // Cumulative segment thresholds:
+      const s1 = seg.L_bottom;
+      const c1 = s1 + seg.cornerLen;
+      const s2 = c1 + seg.L_left;
+      const c2 = s2 + seg.cornerLen;
+      const s3 = c2 + seg.L_top;
+      const c3 = s3 + seg.cornerLen;
+      const s4 = c3 + seg.L_right;
+      const c4 = s4 + seg.cornerLen; // totalPerimeter
+
+      if ((distInLap >= s1 - 30 && distInLap <= c1 + 30) ||
+          (distInLap >= s2 - 30 && distInLap <= c2 + 30) ||
+          (distInLap >= s3 - 30 && distInLap <= c3 + 30) ||
+          (distInLap >= s4 - 30 || distInLap <= 30)) {
+        isNearCorner = true;
+      }
+
+      const baseSpeed = seg.totalPerimeter / LAP_DURATION_SECONDS;
+      const currentSpeed = isNearCorner ? baseSpeed * 0.55 : baseSpeed * 1.15;
+
+      const stepDist = currentSpeed * dt;
+      carDistance = (carDistance + stepDist) % seg.totalPerimeter;
+
+      // Wheel rotation: in direction of vehicle movement
+      // Tire circumference = pi * wheelDiameter ~ pi * (ch * 0.488) ~ 95.8px
+      const wheelDiameterPx = ch * 0.488;
+      const wheelCircumference = Math.PI * wheelDiameterPx;
+      const wheelAngleDelta = (stepDist / wheelCircumference) * 360;
+      wheelRotationDeg = (wheelRotationDeg + wheelAngleDelta) % 360;
+
+      if (fw) fw.style.transform = `rotate(${wheelRotationDeg}deg)`;
+      if (rw) rw.style.transform = `rotate(${wheelRotationDeg}deg)`;
 
       let x = 0, y = 0, rot = 0;
+      const d = carDistance;
 
-      if (carDistance < bottomLen) {
-        // 1. Bottom Edge: driving right to left
-        const progress = carDistance / bottomLen;
-        x = (1 - progress) * (vw - cw);
+      if (d < s1) {
+        // 1. Bottom straight (right to left, rot = 0deg)
+        const progress = d / seg.L_bottom;
+        x = (vw - cw - seg.r) - progress * seg.L_bottom;
         y = vh - ch;
         rot = 0;
-      } else if (carDistance < bottomLen + leftLen) {
-        // 2. Left Edge: driving bottom to top (rotate 90deg clockwise)
-        const progress = (carDistance - bottomLen) / leftLen;
-        // With rotate(90deg), width and height swap visually.
-        // Left boundary for tires on the glass:
+      } else if (d < c1) {
+        // Corner 1: Bottom-Left turning 0 -> 90deg
+        const p = (d - s1) / seg.cornerLen; // 0 to 1
+        const angle = p * (Math.PI / 2);
+        rot = p * 90;
+        // Arc center is at (seg.r + (ch - cw)/2, vh - ch - seg.r)
+        x = seg.r * (1 - Math.sin(angle)) + (p * ((ch - cw) / 2));
+        y = (vh - ch) - seg.r * (1 - Math.cos(angle));
+      } else if (d < s2) {
+        // 2. Left straight (bottom to top, rot = 90deg)
+        const progress = (d - c1) / seg.L_left;
         x = (ch - cw) / 2;
-        y = (1 - progress) * (vh - ch);
+        y = (vh - ch - seg.r) - progress * seg.L_left;
         rot = 90;
-      } else if (carDistance < bottomLen + leftLen + topLen) {
-        // 3. Top Edge: driving left to right (rotate 90deg clockwise again -> 180deg)
-        const progress = (carDistance - (bottomLen + leftLen)) / topLen;
-        x = progress * (vw - cw);
+      } else if (d < c2) {
+        // Corner 2: Top-Left turning 90 -> 180deg
+        const p = (d - s2) / seg.cornerLen;
+        const angle = p * (Math.PI / 2);
+        rot = 90 + p * 90;
+        x = ((ch - cw) / 2) * (1 - p) + seg.r * (1 - Math.cos(angle));
+        y = seg.r * (1 - Math.sin(angle));
+      } else if (d < s3) {
+        // 3. Top straight (left to right, rot = 180deg)
+        const progress = (d - c2) / seg.L_top;
+        x = seg.r + progress * seg.L_top;
         y = 0;
         rot = 180;
-      } else {
-        // 4. Right Edge: driving top to bottom (rotate 90deg clockwise again -> 270deg)
-        const progress = (carDistance - (bottomLen + leftLen + topLen)) / rightLen;
-        // With rotate(270deg), tires touch the right window edge:
+      } else if (d < c3) {
+        // Corner 3: Top-Right turning 180 -> 270deg
+        const p = (d - s3) / seg.cornerLen;
+        const angle = p * (Math.PI / 2);
+        rot = 180 + p * 90;
+        const rightTargetX = vw - (cw + ch) / 2;
+        x = (vw - cw - seg.r) + seg.r * Math.sin(angle) + p * (rightTargetX - (vw - cw));
+        y = seg.r * (1 - Math.cos(angle));
+      } else if (d < s4) {
+        // 4. Right straight (top to bottom, rot = 270deg)
+        const progress = (d - c3) / seg.L_right;
         x = vw - (cw + ch) / 2;
-        y = progress * (vh - ch);
+        y = seg.r + progress * seg.L_right;
         rot = 270;
+      } else {
+        // Corner 4: Bottom-Right turning 270 -> 360/0deg
+        const p = (d - s4) / seg.cornerLen;
+        const angle = p * (Math.PI / 2);
+        rot = 270 + p * 90;
+        const rightStartX = vw - (cw + ch) / 2;
+        x = rightStartX + p * ((vw - cw - seg.r) - rightStartX) + seg.r * (1 - Math.cos(angle));
+        y = (vh - ch - seg.r) + seg.r * Math.sin(angle);
       }
 
       car.style.left = `${x}px`;
@@ -1665,7 +1747,6 @@
       if (!lastTime) lastTime = timestamp;
       const dt = (timestamp - lastTime) / 1000;
       lastTime = timestamp;
-      // Clamp dt to avoid huge jumps on tab switch
       updateCarFrame(Math.min(dt, 0.1));
       requestAnimationFrame(carLoop);
     }
