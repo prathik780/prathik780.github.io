@@ -86,31 +86,31 @@
       transform: translateY(-4px);
     }
 
-    /* Roaming EcoCAR Mascot Outline */
+    /* Roaming EcoCAR Cadillac LYRIQ Mascot */
     .roaming-car-wrapper {
       position: fixed;
       z-index: 50;
-      width: 140px;
+      width: 168px;
       height: 60px;
       pointer-events: auto;
       cursor: pointer;
       user-select: none;
-      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.35));
-      transition: left 1.6s cubic-bezier(0.25, 1, 0.5, 1),
-                  top 1.6s cubic-bezier(0.25, 1, 0.5, 1),
-                  transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+      transition: left 1.8s cubic-bezier(0.25, 1, 0.5, 1),
+                  top 1.8s cubic-bezier(0.25, 1, 0.5, 1),
+                  transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .roaming-car-wrapper:hover {
-      filter: drop-shadow(0 0 16px rgba(216, 167, 56, 0.8)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.4));
+      filter: drop-shadow(0 0 14px rgba(216, 167, 56, 0.85)) drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
     }
     @media (max-width: 640px) {
       .roaming-car-wrapper {
-        width: 110px;
-        height: 48px;
+        width: 120px;
+        height: 43px;
       }
     }
     @keyframes exhaustTrail {
-      0% { opacity: 0.8; transform: scale(0.6) translateX(0); }
+      0% { opacity: 0.85; transform: scale(0.6) translateX(0); }
       100% { opacity: 0; transform: scale(1.6) translateX(-18px); }
     }
     .exhaust-particle {
@@ -122,9 +122,9 @@
 <body class="bg-slate-50 text-slate-800 dark:bg-navy-950 dark:text-slate-100 font-sans antialiased selection:bg-gtgold-400 selection:text-navy-950 transition-colors duration-300">
 
   <!-- =====================================================================
-       ROAMING ECOCAR CADILLAC LYRIQ OUTLINE MASCOT (CIRCUMNAVIGATES SCREEN)
+       ROAMING ECOCAR CADILLAC LYRIQ MASCOT (TIRES GLUED TO SCREEN EDGES)
   ====================================================================== -->
-  <div id="roaming-car" class="roaming-car-wrapper group" style="top: 85vh; left: 10vw;" onclick="interactCarMascot()">
+  <div id="roaming-car" class="roaming-car-wrapper group" style="top: calc(100vh - 62px); left: 10vw; transform: rotate(0deg);" onclick="interactCarMascot()">
     <div class="relative w-full h-full">
       <!-- Interactive Speech / Tooltip Bubble -->
       <div id="roaming-car-bubble" class="absolute -top-12 left-1/2 -translate-x-1/2 px-3.5 py-1.5 rounded-xl bg-slate-900/95 dark:bg-white text-white dark:text-slate-900 text-xs font-mono font-bold whitespace-nowrap shadow-2xl opacity-0 pointer-events-none transition-all duration-300 group-hover:opacity-100 border border-gtgold-400/60 flex items-center gap-2">
@@ -132,112 +132,11 @@
       </div>
 
       <!-- Energy / Speed Particles -->
-      <span class="exhaust-particle absolute top-7 -left-2 text-[10px] text-gtgold-400 select-none pointer-events-none">⚡</span>
-      <span class="exhaust-particle absolute top-8 -left-5 text-[9px] text-emerald-400 select-none pointer-events-none" style="animation-delay: 0.5s;">🌿</span>
+      <span class="exhaust-particle absolute top-8 -left-2 text-[11px] text-gtgold-400 select-none pointer-events-none">⚡</span>
+      <span class="exhaust-particle absolute top-9 -left-5 text-[10px] text-emerald-400 select-none pointer-events-none" style="animation-delay: 0.5s;">🌿</span>
 
-      <!-- Vector Outline of the 2023 Cadillac LYRIQ EcoCAR AWD Platform -->
-      <svg viewBox="0 0 240 100" class="w-full h-full overflow-visible" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <!-- Subtle Gold/Cyberpunk Gradient for Accents -->
-          <linearGradient id="lyriqGold" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#d8a738" />
-            <stop offset="50%" stop-color="#fef08a" />
-            <stop offset="100%" stop-color="#c59227" />
-          </linearGradient>
-          <linearGradient id="lyriqBodyGlass" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#0f172a" stop-opacity="0.95" />
-            <stop offset="100%" stop-color="#020617" stop-opacity="0.95" />
-          </linearGradient>
-        </defs>
-
-        <!-- Underglow Aura -->
-        <ellipse cx="120" cy="85" rx="95" ry="8" fill="#d8a738" fill-opacity="0.25" class="transition-opacity group-hover:fill-opacity-50" />
-
-        <!-- Main Body Aerodynamic Fill Silhouette -->
-        <path d="M 12 70 
-                 L 22 70 
-                 A 17 17 0 0 1 56 70 
-                 L 160 70 
-                 A 17 17 0 0 1 194 70 
-                 L 226 68 
-                 C 232 66, 236 60, 234 52 
-                 L 228 46 
-                 C 220 44, 202 42, 175 40 
-                 L 135 22 
-                 C 125 18, 90 19, 65 24 
-                 L 32 38 
-                 C 20 42, 12 48, 8 58 
-                 C 6 64, 8 70, 12 70 Z" 
-              fill="url(#lyriqBodyGlass)" />
-
-        <!-- Sleek Outer Body Outline (GT Gold / Crisp High-Tech Line) -->
-        <path d="M 8 64
-                 C 6 68, 10 70, 16 70
-                 L 22 70
-                 A 17 17 0 0 1 56 70
-                 L 160 70
-                 A 17 17 0 0 1 194 70
-                 L 224 68
-                 C 232 66, 236 60, 234 52
-                 L 226 46
-                 C 218 44, 198 42, 172 40
-                 L 134 22
-                 C 125 18, 92 19, 68 24
-                 L 34 38
-                 C 20 42, 12 48, 8 58 Z"
-              fill="none" 
-              stroke="url(#lyriqGold)" 
-              stroke-width="2.6" 
-              stroke-linecap="round" 
-              stroke-linejoin="round" />
-
-        <!-- Characteristic Cadillac LYRIQ Fastback Roofline & Beltline -->
-        <path d="M 38 40 L 72 25 C 92 21, 124 20, 134 23 L 170 40 L 222 46" 
-              fill="none" stroke="#d8a738" stroke-width="1.4" opacity="0.8" />
-
-        <!-- Side Windows (Greenhouse with A/B/C Pillars) -->
-        <path d="M 72 26 L 110 26 L 110 40 L 48 40 Z" fill="#38bdf8" fill-opacity="0.3" stroke="#d8a738" stroke-width="1.2" />
-        <path d="M 115 26 L 140 26 L 165 40 L 115 40 Z" fill="#38bdf8" fill-opacity="0.3" stroke="#d8a738" stroke-width="1.2" />
-        <!-- Quarter Window Glass -->
-        <path d="M 143 27 L 158 35 L 143 38 Z" fill="#38bdf8" fill-opacity="0.2" stroke="#d8a738" stroke-width="1" />
-
-        <!-- Cadillac Vertical Front LED Headlight Blade -->
-        <path d="M 228 47 L 232 55 L 230 65" fill="none" stroke="#fef08a" stroke-width="2.5" stroke-linecap="round" />
-        <!-- Horizontal Grille Accent & EcoCAR Illuminated Crest Line -->
-        <path d="M 218 52 C 226 53, 232 57, 234 60" fill="none" stroke="#f59e0b" stroke-width="1.8" />
-        <line x1="222" y1="58" x2="231" y2="58" stroke="#38bdf8" stroke-width="1.5" />
-
-        <!-- EcoCAR Competition Honeycomb Livery Accent on Door -->
-        <polygon points="90,48 95,45 100,48 100,54 95,57 90,54" fill="none" stroke="#d8a738" stroke-width="1" opacity="0.75" />
-        <polygon points="102,48 107,45 112,48 112,54 107,57 102,54" fill="none" stroke="#d8a738" stroke-width="1" opacity="0.75" />
-        <polygon points="96,58 101,55 106,58 106,64 101,67 96,64" fill="none" stroke="#d8a738" stroke-width="1" opacity="0.75" />
-
-        <!-- Rear Taillight / Fin Blade (Cadillac Vertical Light) -->
-        <path d="M 8 56 L 6 64 L 14 66" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-linecap="round" />
-
-        <!-- Front Wheel Assembly -->
-        <circle cx="177" cy="70" r="16" fill="#090f1d" stroke="#d8a738" stroke-width="2.4" />
-        <circle cx="177" cy="70" r="10" fill="#1e293b" stroke="#fef08a" stroke-width="1.2" />
-        <!-- Multi-Spoke EcoCAR Alloy -->
-        <line x1="177" y1="56" x2="177" y2="84" stroke="#d8a738" stroke-width="1.5" />
-        <line x1="163" y1="70" x2="191" y2="70" stroke="#d8a738" stroke-width="1.5" />
-        <line x1="167" y1="60" x2="187" y2="80" stroke="#d8a738" stroke-width="1.5" />
-        <line x1="167" y1="80" x2="187" y2="60" stroke="#d8a738" stroke-width="1.5" />
-        <circle cx="177" cy="70" r="3.5" fill="#f59e0b" />
-
-        <!-- Rear Wheel Assembly -->
-        <circle cx="39" cy="70" r="16" fill="#090f1d" stroke="#d8a738" stroke-width="2.4" />
-        <circle cx="39" cy="70" r="10" fill="#1e293b" stroke="#fef08a" stroke-width="1.2" />
-        <!-- Multi-Spoke EcoCAR Alloy -->
-        <line x1="39" y1="56" x2="39" y2="84" stroke="#d8a738" stroke-width="1.5" />
-        <line x1="25" y1="70" x2="53" y2="70" stroke="#d8a738" stroke-width="1.5" />
-        <line x1="29" y1="60" x2="49" y2="80" stroke="#d8a738" stroke-width="1.5" />
-        <line x1="29" y1="80" x2="49" y2="60" stroke="#d8a738" stroke-width="1.5" />
-        <circle cx="39" cy="70" r="3.5" fill="#f59e0b" />
-
-        <!-- Rocker Panel / Underbody Battery Enclosure Line -->
-        <line x1="56" y1="71" x2="160" y2="71" stroke="#10b981" stroke-width="1.8" stroke-dasharray="4 2" />
-      </svg>
+      <!-- Exact EcoCAR Cadillac LYRIQ Cutout Image -->
+      <img src="ecocar-lyriq.png" alt="Georgia Tech EcoCAR Cadillac LYRIQ" class="w-full h-full object-contain pointer-events-none select-none" />
     </div>
   </div>
 
@@ -1698,22 +1597,28 @@
     let carQuoteIdx = 0;
 
     // Waypoints circumnavigating all 4 edges of the viewport
+    // The tires are aligned flush against each edge of the screen:
+    // - Bottom: car upright (rotate 0deg), tires touching bottom edge
+    // - Right: car driving up (rotate -90deg), tires touching right edge
+    // - Top: car driving left upside-down (rotate 180deg, NO vertical flip), tires touching top edge
+    // - Left: car driving down (rotate 90deg), tires touching left edge
     const CAR_WAYPOINTS = [
-      // Bottom edge driving right
-      { top: "88vh", left: "10vw", rotation: 0, flipY: false },
-      { top: "88vh", left: "45vw", rotation: 0, flipY: false },
-      { top: "88vh", left: "80vw", rotation: 0, flipY: false },
-      // Turning up the right edge
-      { top: "65vh", left: "88vw", rotation: -90, flipY: false },
-      { top: "35vh", left: "88vw", rotation: -90, flipY: false },
-      { top: "14vh", left: "88vw", rotation: -90, flipY: false },
-      // Turning left across top edge
-      { top: "12vh", left: "75vw", rotation: 180, flipY: true },
-      { top: "12vh", left: "45vw", rotation: 180, flipY: true },
-      { top: "12vh", left: "15vw", rotation: 180, flipY: true },
-      // Turning down the left edge
-      { top: "35vh", left: "5vw", rotation: 90, flipY: false },
-      { top: "65vh", left: "5vw", rotation: 90, flipY: false }
+      // 1. Bottom edge driving right
+      { top: "calc(100vh - 60px)", left: "8vw", rotation: 0 },
+      { top: "calc(100vh - 60px)", left: "42vw", rotation: 0 },
+      { top: "calc(100vh - 60px)", left: "calc(100vw - 190px)", rotation: 0 },
+      // 2. Turning up the right edge (tires against right screen boundary)
+      { top: "72vh", left: "calc(100vw - 114px)", rotation: -90 },
+      { top: "44vh", left: "calc(100vw - 114px)", rotation: -90 },
+      { top: "16vh", left: "calc(100vw - 114px)", rotation: -90 },
+      // 3. Turning left along the top edge (upside down, tires against top boundary)
+      { top: "0px", left: "calc(100vw - 190px)", rotation: 180 },
+      { top: "0px", left: "45vw", rotation: 180 },
+      { top: "0px", left: "8vw", rotation: 180 },
+      // 4. Turning down the left edge (tires against left boundary)
+      { top: "20vh", left: "-54px", rotation: 90 },
+      { top: "50vh", left: "-54px", rotation: 90 },
+      { top: "75vh", left: "-54px", rotation: 90 }
     ];
 
     let currentWaypointIdx = 0;
@@ -1722,14 +1627,19 @@
       const car = document.getElementById("roaming-car");
       if (!car) return;
 
+      // Position initially at bottom left
+      const initialWp = CAR_WAYPOINTS[0];
+      car.style.top = initialWp.top;
+      car.style.left = initialWp.left;
+      car.style.transform = `rotate(${initialWp.rotation}deg)`;
+
       // Advance waypoint every 3 seconds around the screen
       setInterval(() => {
         currentWaypointIdx = (currentWaypointIdx + 1) % CAR_WAYPOINTS.length;
         const wp = CAR_WAYPOINTS[currentWaypointIdx];
         car.style.top = wp.top;
         car.style.left = wp.left;
-        const scaleStr = wp.flipY ? "scaleY(-1)" : "scaleY(1)";
-        car.style.transform = `rotate(${wp.rotation}deg) ${scaleStr}`;
+        car.style.transform = `rotate(${wp.rotation}deg)`;
       }, 3000);
     }
 
@@ -1747,8 +1657,7 @@
       car.style.transform += " scale(1.15)";
       setTimeout(() => {
         const wp = CAR_WAYPOINTS[currentWaypointIdx];
-        const scaleStr = wp.flipY ? "scaleY(-1)" : "scaleY(1)";
-        car.style.transform = `rotate(${wp.rotation}deg) ${scaleStr}`;
+        car.style.transform = `rotate(${wp.rotation}deg)`;
       }, 350);
 
       setTimeout(() => {
